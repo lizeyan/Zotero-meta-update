@@ -1,24 +1,22 @@
 from dataclasses import dataclass
-from typing import List, Optional
-import requests
-from loguru import logger
+from functools import cached_property
+from typing import List, Optional, Dict, Set
+
+from work.search_item import search_on_DBLP_by_title, search_on_crossref_by_title, search_on_crossref_by_doi
 
 
 @dataclass
 class Work:
-    title: str
+    title: Optional[str] = None
     doi: Optional[str] = None
     authors: Optional[List[str]] = None
     year: Optional[str] = None
     publisher: Optional[str] = None
     url: Optional[str] = None
 
-    def lookup(self):
-        """
-        lookup the current work on databases and fill or correct the fields
-        :return:
-        """
-        pass
+    @cached_property
+    def zotero_item_fields(self) -> Set[str]:
+        raise NotImplementedError()
 
     def is_preprint(self) -> bool:
         """
@@ -36,30 +34,34 @@ class Work:
         else:
             raise NotImplementedError()  # TODO
 
-    @staticmethod
-    def search_on_crossref_by_doi(doi: str) -> Optional[dict]:
-        try:
-            data = requests.get(f"https://api.crossref.org/works/{doi}").json()
-            return data
-        except Exception as e:
-            logger.error(f"search_on_crossref_by_doi {doi} failed: {e}")
-        finally:
-            return None
+    def update_with_crossref_item_data(self, data: Optional[Dict]):
+        if data is None:
+            return
+        if "title" in data:
+            self.title = data["title"][0]
+        if "author" in data:
+            self.authors = [author["given"] + " " + author["family"] for author in data["author"]]
+        if "published-print" in data:
+            self.year = data["published-print"]["date-parts"][0][0]
+        if "publisher" in data:
+            self.publisher = data["publisher"]
+        if "URL" in data:
+            self.url = data["URL"]
+        if "DOI" in data:
+            self.doi = data["DOI"]
 
-    @staticmethod
-    def search_on_crossref_by_title(title: str) -> Optional[dict]:
-        try:
-            data = requests.get(f"https://api.crossref.org/works", params={"query": title}).json()
-            return data
-        except Exception as e:
-            logger.error(f"search_on_crossref_by_doi {doi} failed: {e}")
-        finally:
-            return None
-
-    @staticmethod
-    def search_on_DBLP_by_doi(doi: str) -> Optional[dict]:
-        pass  # TODO
-
-    @staticmethod
-    def search_on_DBLP_by_title(title: str) -> Optional[dict]:
-        pass  # TODO
+    def update_with_DBLP_item_data(self, data: Optional[Dict]):
+        if data is None:
+            return
+        if "title" in data:
+            self.title = data["title"]
+        if "authors" in data:
+            self.authors = [author["text"] for author in data["authors"]["author"]]
+        if "year" in data:
+            self.year = data["year"]
+        if "publisher" in data:
+            self.publisher = data["publisher"]
+        if "url" in data:
+            self.url = data["url"]
+        if "doi" in data:
+            self.doi = data["doi"]
