@@ -15,4 +15,4 @@ def are_title_almost_equal(title_a: str, title_b: str) -> bool:
 
 
 def are_doi_equal(doi_a: str, doi_b: str) -> bool:
-    return urlparse(doi_a).path.lstrip("/") == urlparse(doi_b).path.lstrip("/")
+    return urlparse(doi_a).path.lstrip("/").lower() == urlparse(doi_b).path.lstrip("/").lower()

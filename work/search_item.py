@@ -12,6 +12,7 @@ from work.utils import are_title_almost_equal, are_doi_equal
 
 @lru_cache(maxsize=None)
 def search_on_crossref_by_doi(doi: str) -> Optional[dict]:
+    logger.debug(f"search_on_crossref_by_doi {doi=}")
     try:
         data = requests.get(f"https://api.crossref.org/works/{doi}").json()
         return data["message"]
@@ -22,6 +23,7 @@ def search_on_crossref_by_doi(doi: str) -> Optional[dict]:
 
 @lru_cache(maxsize=None)
 def search_on_crossref_by_title(title: str) -> Optional[dict]:
+    logger.debug(f"search_on_crossref_by_title {title=}")
     try:
         data = requests.get(
             f"https://api.crossref.org/works", params={
@@ -52,7 +54,16 @@ def search_on_crossref_by_title(title: str) -> Optional[dict]:
 
 
 @lru_cache(maxsize=None)
-def search_on_DBLP_by_title(title: str, doi: Optional[str] = None) -> Optional[dict]:
+def search_on_DBLP_by_title(
+        title: str, *, doi: Optional[str] = None, first_author: Optional[str] = None
+) -> Optional[dict]:
+    """
+    :param title:
+    :param doi: Use DOI to determine which is the correct search result
+    :param first_author: Use first author as additional search terms when title is not enough
+    :return:
+    """
+    logger.debug(f"search_on_DBLP_by_title {title=} {doi=}")
     try:
         data = requests.get(
             f"https://dblp.org/search/publ/api", params={
@@ -68,7 +79,26 @@ def search_on_DBLP_by_title(title: str, doi: Optional[str] = None) -> Optional[d
             if (doi is None and title_matched) or doi_matched:
                 possible_items.append(info)
         if len(possible_items) == 0:
-            return None
+            if first_author is not None and first_author != "":
+                # search with first author
+                logger.debug(f"search_on_DBLP_by_title {title=} {doi=} with {first_author=}")
+                data = requests.get(
+                    f"https://dblp.org/search/publ/api", params={
+                        "q": f"{title} {first_author}",
+                        "format": "json",
+                    }
+                ).json()
+                possible_items = []
+                for item in data["result"]["hits"]["hit"]:
+                    info = item["info"]
+                    title_matched = are_title_almost_equal(info["title"], title)
+                    doi_matched = are_doi_equal(info.get("doi", ""), doi if doi is not None else "NaN")
+                    if (doi is None and title_matched) or doi_matched:
+                        possible_items.append(info)
+                if len(possible_items) > 0:
+                    return possible_items[0]
+            else:
+                return None
         elif len(possible_items) == 1:
             return possible_items[0]
         else:
@@ -88,6 +118,7 @@ def search_on_DBLP_by_title(title: str, doi: Optional[str] = None) -> Optional[d
 
 @lru_cache(maxsize=None)
 def get_venue_info_on_DBLP(key: str, year: str):
+    logger.debug(f"get_venue_info_on_DBLP {key=} {year=}")
     try:
         # noinspection PyTypeChecker
         venue_tree = ET.parse(StringIO(requests.get(
@@ -104,6 +135,7 @@ def get_venue_info_on_DBLP(key: str, year: str):
 
 @lru_cache(maxsize=None)
 def search_journal_by_openAlex(title: str):
+    logger.debug(f"search_journal_by_openAlex {title=}")
     try:
         # noinspection PyTypeChecker
         data = requests.get(

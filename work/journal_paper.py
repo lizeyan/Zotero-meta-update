@@ -3,6 +3,7 @@ from functools import cached_property
 from typing import Optional, Dict, Set
 
 import requests
+from loguru import logger
 
 from work.search_item import search_journal_by_openAlex
 from work.work import Work
@@ -17,7 +18,7 @@ class JournalPaper(Work):
     pages: Optional[str] = None
 
     @cached_property
-    def zotero_item_fields(self) -> Set[str]:
+    def zotero_itemtype_fields(self) -> Set[str]:
         return {_["field"] for _ in requests.get(
             "https://api.zotero.org/itemTypeFields?itemType=journalArticle",
             #     headers=headers,
@@ -30,7 +31,7 @@ class JournalPaper(Work):
         super().update_with_crossref_item_data(data)
         if 'container-title' in data:
             self.publication = data['container-title'][0]
-        if 'short-container-title' in data:
+        if 'short-container-title' in data and len(data['short-container-title']) > 0:
             self.journal_abbr = data['short-container-title'][0]
         if "volume" in data:
             self.volume = data["volume"]
@@ -57,3 +58,24 @@ class JournalPaper(Work):
                 self.publication = journal_info['display_name']
             if "alternate_names" in journal_info:
                 self.journal_abbr = journal_info["alternate_names"][0]
+
+    def update_zotero_item_data(self, data: dict) -> Dict:
+        data = super().update_zotero_item_data(data)
+        key = data['key']
+        if data['itemType'] != 'journalArticle':
+            logger.debug(f"Change itemType from {data['itemType']} to journalArticle for {key=}")
+            for field in set(data.keys()) - self.zotero_fields:
+                logger.debug(f"delete field {field=}")
+                del data[field]
+            for field in self.zotero_fields:
+                if field not in data:
+                    logger.debug(f"add field {field=}")
+                    data[field] = ""
+            data['itemType'] = 'journalArticle'
+
+        self._update_zotero_item_key(data, "publicationTitle", "publication")
+        self._update_zotero_item_key(data, "journalAbbreviation", "journal_abbr")
+        self._update_zotero_item_key(data, "volume", "volume")
+        self._update_zotero_item_key(data, "issue", "issue")
+        self._update_zotero_item_key(data, "pages", "pages")
+        return data

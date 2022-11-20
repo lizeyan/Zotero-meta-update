@@ -1,6 +1,6 @@
 import pytest
 
-from work import ConferencePaper
+from work import are_doi_equal
 from work.search_item import search_on_crossref_by_title, search_on_DBLP_by_title
 
 
@@ -25,12 +25,9 @@ from work.search_item import search_on_crossref_by_title, search_on_DBLP_by_titl
     ]
 )
 def test_search_with_title_crossref(title, doi):
-    def is_doi_equal(a, b):
-        return a.lower().endswith(b.lower())
-
     data = search_on_crossref_by_title(title)
     if doi is not None:
-        assert data is not None and is_doi_equal(data["DOI"], doi)
+        assert data is not None and are_doi_equal(data["DOI"], doi)
     else:
         assert data is None
 
@@ -52,12 +49,9 @@ def test_search_with_title_crossref(title, doi):
     ]
 )
 def test_search_with_title_DBLP(title, doi):
-    def is_doi_equal(a, b):
-        return a.lower().endswith(b.lower())
-
     data = search_on_DBLP_by_title(title)
     if doi is not None:
-        assert data is not None and is_doi_equal(data["doi"], doi)
+        assert data is not None and are_doi_equal(data["doi"], doi)
     else:
         assert data is None
 
@@ -71,11 +65,25 @@ def test_search_with_title_DBLP(title, doi):
     ]
 )
 def test_search_with_title_DBLP_no_doi(title, url):
-    def is_doi_equal(a, b):
-        return a.lower().endswith(b.lower())
-
     data = search_on_DBLP_by_title(title)
     if url is not None:
-        assert data is not None and is_doi_equal(data["url"], url)
+        assert data is not None and are_doi_equal(data["url"], url)
+    else:
+        assert data is None
+
+
+@pytest.mark.parametrize(
+    "title,first_author,doi", [
+        (
+                "random forests",
+                "Breiman",
+                "10.1023/A:1010933404324",
+        ),
+    ]
+)
+def test_search_with_title_DBLP_with_first_author(title, first_author, doi):
+    data = search_on_DBLP_by_title(title=title, first_author=first_author)
+    if doi is not None:
+        assert data is not None and are_doi_equal(data["doi"], doi)
     else:
         assert data is None

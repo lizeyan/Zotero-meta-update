@@ -1,0 +1,89 @@
+{
+  "key": "MJGS68VK",
+  "version": 4307,
+  "itemType": "journalArticle",
+  "title": "Pytorch distributed: Experiences on accelerating data parallel training",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Shen",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yanli",
+      "lastName": "Zhao"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Rohan",
+      "lastName": "Varma"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Omkar",
+      "lastName": "Salpekar"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Pieter",
+      "lastName": "Noordhuis"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Teng",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Adam",
+      "lastName": "Paszke"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Jeff",
+      "lastName": "Smith"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Brian",
+      "lastName": "Vaughan"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Pritam",
+      "lastName": "Damania"
+    },
+    {
+      "creatorType": "author",
+      "name": "others"
+    }
+  ],
+  "abstractNote": "",
+  "publicationTitle": "arXiv preprint arXiv:2006.15704",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "date": "2020",
+  "series": "",
+  "seriesTitle": "",
+  "seriesText": "",
+  "journalAbbreviation": "",
+  "language": "",
+  "DOI": "",
+  "ISSN": "",
+  "shortTitle": "",
+  "url": "",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2021-09-16T06:29:33Z",
+  "dateModified": "2021-09-16T06:31:16Z"
+}

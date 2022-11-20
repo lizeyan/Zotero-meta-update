@@ -257,3 +257,5 @@ ZOTERO_USER_ID
 ZOTERO_API_KEY
 
 .idea/
+output/
+/.coveralls.yml
