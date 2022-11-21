@@ -1,0 +1,62 @@
+{
+  "key": "DY4P28AW",
+  "version": 2087,
+  "itemType": "journalArticle",
+  "title": "Sinan: ML-Based and QoS-Aware Resource Management for Cloud Microservices",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Yanqi",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Weizhe",
+      "lastName": "Hua"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Zhuangzhuang",
+      "lastName": "Zhou"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "G Edward",
+      "lastName": "Suh"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Christina",
+      "lastName": "Delimitrou"
+    }
+  ],
+  "abstractNote": "Cloud applications are increasingly shifting from large monolithic services, to large numbers of loosely-coupled, specialized microservices. Despite their advantages in terms of facilitating development, deployment, modularity, and isolation, microservices complicate resource management, as dependencies between them introduce backpressure effects and cascading QoS violations.",
+  "publicationTitle": "",
+  "volume": "",
+  "issue": "",
+  "pages": "15",
+  "date": "2021",
+  "series": "",
+  "seriesTitle": "",
+  "seriesText": "",
+  "journalAbbreviation": "",
+  "language": "en",
+  "DOI": "",
+  "ISSN": "",
+  "shortTitle": "",
+  "url": "",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "Zotero",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [],
+  "collections": [
+    "FYWZE8KC"
+  ],
+  "relations": {},
+  "dateAdded": "2021-04-02T02:02:52Z",
+  "dateModified": "2021-04-02T02:02:52Z"
+}

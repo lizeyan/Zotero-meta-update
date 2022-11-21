@@ -1,0 +1,82 @@
+{
+  "key": "N38EVV4Q",
+  "version": 6683,
+  "itemType": "conferencePaper",
+  "title": "Causal Inference-Based Root Cause Analysis for Online Service Systems with Intervention Recognition",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Mingjie",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Zeyan",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Kanglin",
+      "lastName": "Yin"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Xiaohui",
+      "lastName": "Nie"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Wenchi",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Kaixin",
+      "lastName": "Sui"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Dan",
+      "lastName": "Pei"
+    }
+  ],
+  "abstractNote": "Fault diagnosis is critical in many domains, as faults may lead to safety threats or economic losses. In the field of online service systems, operators rely on enormous monitoring data to detect and mitigate failures. Quickly recognizing a small set of root cause indicators for the underlying fault can save much time for failure mitigation. In this paper, we formulate the root cause analysis problem as a new causal inference task named intervention recognition. We proposed a novel unsupervised causal inference-based method named Causal Inference-based Root Cause Analysis (CIRCA). The core idea is a sufficient condition for a monitoring variable to be a root cause indicator, i.e., the change of probability distribution conditioned on the parents in the Causal Bayesian Network (CBN). Towards the application in online service systems, CIRCA constructs a graph among monitoring metrics based on the knowledge of system architecture and a set of causal assumptions. The simulation study illustrates the theoretical reliability of CIRCA. The performance on a real-world dataset further shows that CIRCA can improve the recall of the top-1 recommendation by 25% over the best baseline method.",
+  "date": "2022-8-14",
+  "proceedingsTitle": "Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+  "conferenceName": "KDD '22: The 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+  "place": "Washington DC USA",
+  "publisher": "ACM",
+  "volume": "",
+  "pages": "3230-3240",
+  "series": "KDD '22",
+  "language": "",
+  "DOI": "10.1145/3534678.3539041",
+  "ISBN": "",
+  "shortTitle": "",
+  "url": "http://dx.doi.org/10.1145/3534678.3539041",
+  "accessDate": "2022-06-15T08:39:27Z",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "arXiv.org",
+  "callNumber": "",
+  "rights": "All rights reserved",
+  "extra": "arXiv:2206.05871 [cs]",
+  "inPublications": true,
+  "tags": [
+    {
+      "tag": "Computer Science - Artificial Intelligence",
+      "type": 1
+    },
+    {
+      "tag": "Computer Science - Software Engineering",
+      "type": 1
+    }
+  ],
+  "collections": [
+    "BMJY3QIM",
+    "QS5T5XU9"
+  ],
+  "relations": {},
+  "dateAdded": "2022-06-15T08:39:27Z",
+  "dateModified": "2022-11-21T05:16:32Z"
+}

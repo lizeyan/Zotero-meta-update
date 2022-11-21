@@ -1,0 +1,50 @@
+{
+  "key": "MF6MXW9T",
+  "version": 373,
+  "itemType": "bookSection",
+  "title": "HAR: Hub, Authority and Relevance Scores in Multi-Relational Data for Query Search",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Xutao",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Michael K.",
+      "lastName": "Ng"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yunming",
+      "lastName": "Ye"
+    }
+  ],
+  "abstractNote": "In this paper, we propose a framework HAR to study the hub and authority scores of objects, and the relevance scores of relations in multi-relational data for query search. The basic idea of our framework is to consider a random walk in multi-relational data, and study in such random walk, limiting probabilities of relations for relevance scores, and of objects for hub scores and authority scores. The main contribution of this paper is to (i) propose a framework (HAR) that can compute the hub, authority and relevance scores by solving limiting probabilities arising from multi-relational data, and can incorporate input query vectors to handle query-specific search; (ii) show existence and uniqueness of such limiting probabilities so that they can be used for query search effectively; and (iii) develop an iterative algorithm to solve a set of tensor (multivariate polynomial) equations to obtain such probabilities. Extensive experimental results on TREC and DBLP data sets suggest that the proposed method is very effective in obtaining relevant results to the querying inputs. In the comparison, we find that the performance of HAR is better than those of HITS, SALSA and TOPHITS.",
+  "bookTitle": "Proceedings of the 2012 SIAM International Conference on Data Mining",
+  "series": "Proceedings",
+  "seriesNumber": "",
+  "volume": "",
+  "numberOfVolumes": "0",
+  "edition": "",
+  "place": "",
+  "publisher": "Society for Industrial and Applied Mathematics",
+  "date": "April 26, 2012",
+  "pages": "141-152",
+  "language": "",
+  "ISBN": "978-1-61197-232-0",
+  "shortTitle": "HAR",
+  "url": "https://epubs.siam.org/doi/abs/10.1137/1.9781611972825.13",
+  "accessDate": "2020-07-13T03:27:39Z",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "epubs.siam.org (Atypon)",
+  "callNumber": "",
+  "rights": "",
+  "extra": "DOI: 10.1137/1.9781611972825.13",
+  "tags": [],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2020-07-13T03:27:39Z",
+  "dateModified": "2020-07-13T03:27:39Z"
+}

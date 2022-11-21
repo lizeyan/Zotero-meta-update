@@ -1,0 +1,14 @@
+[run]
+branch = True
+
+[report]
+exclude_lines =
+    raise AssertionError
+    raise NotImplementedError
+    if 0:
+    if __name__ == .__main__.:
+ignore_errors = True
+omit =
+    tests/
+    */tests/*
+    */site-packages/*

@@ -1,0 +1,95 @@
+{
+  "key": "8VBR3FPS",
+  "version": 7041,
+  "itemType": "journalArticle",
+  "title": "Diverse Instance-Weighting Ensemble Based on Region Drift Disagreement for Concept Drift Adaptation",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Anjin",
+      "lastName": "Liu"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Jie",
+      "lastName": "Lu"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Guangquan",
+      "lastName": "Zhang"
+    }
+  ],
+  "abstractNote": "Concept drift refers to changes in the distribution of underlying data and is an inherent property of evolving data streams. Ensemble learning, with dynamic classifiers, has proved to be an efficient method of handling concept drift. However, the best way to create and maintain ensemble diversity with evolving streams is still a challenging problem. In contrast to estimating diversity via inputs, outputs, or classifier parameters, we propose a diversity measurement based on whether the ensemble members agree on the probability of a regional distribution change. In our method, estimations over regional distribution changes are used as instance weights. Constructing different region sets through different schemes will lead to different drift estimation results, thereby creating diversity. The classifiers that disagree the most are selected to maximize diversity. Accordingly, an instance-based ensemble learning algorithm, called the diverse instance-weighting ensemble (DiwE), is developed to address concept drift for data stream classification problems. Evaluations of various synthetic and real-world data stream benchmarks show the effectiveness and advantages of the proposed algorithm.",
+  "publicationTitle": "IEEE Transactions on Neural Networks and Learning Systems",
+  "volume": "32",
+  "issue": "1",
+  "pages": "293-307",
+  "date": "2021-1",
+  "series": "",
+  "seriesTitle": "",
+  "seriesText": "",
+  "journalAbbreviation": "IEEE Trans. Neural Netw. Learning Syst.",
+  "language": "",
+  "DOI": "10.1109/tnnls.2020.2978523",
+  "ISSN": "2162-2388",
+  "shortTitle": "",
+  "url": "http://dx.doi.org/10.1109/tnnls.2020.2978523",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "IEEE Xplore",
+  "callNumber": "",
+  "rights": "",
+  "extra": "16 citations (Crossref) [2022-11-04]\nConference Name: IEEE Transactions on Neural Networks and Learning Systems",
+  "tags": [
+    {
+      "tag": "Adaptation models",
+      "type": 1
+    },
+    {
+      "tag": "Benchmark testing",
+      "type": 1
+    },
+    {
+      "tag": "Classification",
+      "type": 1
+    },
+    {
+      "tag": "Estimation",
+      "type": 1
+    },
+    {
+      "tag": "Heuristic algorithms",
+      "type": 1
+    },
+    {
+      "tag": "Indexes",
+      "type": 1
+    },
+    {
+      "tag": "Learning systems",
+      "type": 1
+    },
+    {
+      "tag": "Machine learning algorithms",
+      "type": 1
+    },
+    {
+      "tag": "concept drift",
+      "type": 1
+    },
+    {
+      "tag": "data stream",
+      "type": 1
+    },
+    {
+      "tag": "ensemble learning",
+      "type": 1
+    }
+  ],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2022-11-01T03:08:47Z",
+  "dateModified": "2022-11-04T07:28:41Z"
+}

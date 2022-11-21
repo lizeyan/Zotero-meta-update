@@ -1,0 +1,79 @@
+{
+  "key": "RTESPEHE",
+  "version": 1776,
+  "itemType": "conferencePaper",
+  "title": "Localizing Failure Root Causes in a Microservice through Causality Inference",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Yuan",
+      "lastName": "Meng"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Shenglin",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yongqian",
+      "lastName": "Sun"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Ruru",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Zhilong",
+      "lastName": "Hu"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yiyin",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Chenyang",
+      "lastName": "Jia"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Zhaogang",
+      "lastName": "Wang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Dan",
+      "lastName": "Pei"
+    }
+  ],
+  "abstractNote": "An increasing number of Internet applications are applying microservice architecture due to its \ufb02exibility and clear logic. The stability of microservice is thus vitally important for these applications\u2019 quality of service. Accurate failure root cause localization can help operators quickly recover microservice failures and mitigate loss. Although cross-microservice failure root cause localization has been well studied, how to localize failure root causes in a microservice so as to quickly mitigate this microservice has not yet been studied. In this work, we propose a framework, MicroCause, to accurately localize the root cause monitoring indicators in a microservice. MicroCause combines a simple yet effective path condition time series (PCTS) algorithm which accurately captures the sequential relationship of time series data, and a novel temporal cause oriented random walk (TCORW) method integrating the causal relationship, temporal order, and priority information of monitoring data. We evaluate MicroCause based on 86 real-world failure tickets collected from a top tier global online shopping service. Our experiments show that the top 5 accuracy (AC@5) of MicroCause for intramicroservice failure root cause localization is 98.7%, which is greatly higher (by 33.4%) than the best baseline method.",
+  "date": "6/2020",
+  "proceedingsTitle": "2020 IEEE/ACM 28th International Symposium on Quality of Service (IWQoS)",
+  "conferenceName": "2020 IEEE/ACM 28th International Symposium on Quality of Service (IWQoS)",
+  "place": "Hang Zhou, China",
+  "publisher": "IEEE",
+  "volume": "",
+  "pages": "1-10",
+  "series": "",
+  "language": "en",
+  "DOI": "10.1109/IWQoS49365.2020.9213058",
+  "ISBN": "978-1-72816-887-6",
+  "shortTitle": "",
+  "url": "https://ieeexplore.ieee.org/document/9213058/",
+  "accessDate": "2021-02-02T07:40:05Z",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "DOI.org (Crossref)",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2021-02-02T07:40:05Z",
+  "dateModified": "2021-02-02T07:40:05Z"
+}

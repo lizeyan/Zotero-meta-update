@@ -1,0 +1,46 @@
+{
+  "key": "LY92CBSH",
+  "version": 4340,
+  "itemType": "conferencePaper",
+  "title": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning.",
+  "creators": [
+    {
+      "creatorType": "author",
+      "name": "St\u00e9phane Ross"
+    },
+    {
+      "creatorType": "author",
+      "name": "Geoffrey J. Gordon"
+    },
+    {
+      "creatorType": "author",
+      "name": "Drew Bagnell"
+    }
+  ],
+  "abstractNote": "",
+  "date": "2011",
+  "proceedingsTitle": "AISTATS 2011",
+  "conferenceName": "AISTATS 2011",
+  "place": "",
+  "publisher": "JMLR.org",
+  "volume": "15",
+  "pages": "627-635",
+  "series": "JMLR proceedings",
+  "language": "",
+  "DOI": "",
+  "ISBN": "",
+  "shortTitle": "",
+  "url": "https://dblp.org/rec/journals/jmlr/RossGB11",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "",
+  "callNumber": "",
+  "rights": "",
+  "extra": "tex.bibsource: dblp computer science bibliography, https://dblp.org\ntex.biburl: https://dblp.org/rec/journals/jmlr/RossGB11.bib\ntex.timestamp: Wed, 29 May 2019 08:41:48 +0200",
+  "tags": [],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2021-09-17T06:57:14Z",
+  "dateModified": "2022-11-21T05:23:18Z"
+}

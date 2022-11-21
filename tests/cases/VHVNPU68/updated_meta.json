@@ -1,0 +1,101 @@
+{
+  "key": "VHVNPU68",
+  "version": 2427,
+  "itemType": "conferencePaper",
+  "title": "How to mitigate the incident? an effective troubleshooting guide recommendation technique for online service systems",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Jiajun",
+      "lastName": "Jiang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Weihai",
+      "lastName": "Lu"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Junjie",
+      "lastName": "Chen"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Qingwei",
+      "lastName": "Lin"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Pu",
+      "lastName": "Zhao"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yu",
+      "lastName": "Kang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Hongyu",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yingfei",
+      "lastName": "Xiong"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Feng",
+      "lastName": "Gao"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Zhangwei",
+      "lastName": "Xu"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yingnong",
+      "lastName": "Dang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Dongmei",
+      "lastName": "Zhang"
+    }
+  ],
+  "abstractNote": "In recent years, more and more traditional shrink-wrapped software is provided as 7x24 online services. Incidents (events that lead to service disruptions or outages) could affect service availability and cause great financial loss. Therefore, mitigating the incidents is important and time critical. In practice, a document describing a mitigation process, called a troubleshooting guide (TSG), is usually used to reduce the Time To Mitigate (TTM). To investigate the usage of TSGs in real-world online services, we conduct the first empirical study on 18 real-world, large-scale online service systems in Microsoft. We analyze the distribution and characteristics of TSGs among all incident records in the past two years. According to our study, 27.2% incidents have TSG records and 36.2% of them occurred at least twice. Besides, on average developers spend around 36.3% of the entire mitigation time on locating the desired TSGs. Our study shows that incidents could occur repeatedly and TSGs could be reused to facilitate incident mitigation. Motivated by our empirical study, we propose an automated TSG recommendation \u2217This work was done at Microsoft Research (Beijing, China). Jiajun Jiang and Weihai Lu contributed equally to this research. Qingwei Lin is the corresponding author.",
+  "date": "2020-11-8",
+  "proceedingsTitle": "Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering",
+  "conferenceName": "ESEC/FSE '20: 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering",
+  "place": "Virtual Event USA",
+  "publisher": "ACM",
+  "volume": "",
+  "pages": "1410-1420",
+  "series": "ESEC/FSE '20",
+  "language": "en",
+  "DOI": "10.1145/3368089.3417054",
+  "ISBN": "978-1-4503-7043-1",
+  "shortTitle": "How to mitigate the incident?",
+  "url": "http://dx.doi.org/10.1145/3368089.3417054",
+  "accessDate": "2020-12-02T07:30:14Z",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "DOI.org (Crossref)",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [
+    {
+      "tag": "incident"
+    }
+  ],
+  "collections": [
+    "CRN6FARB",
+    "SRE5ME76"
+  ],
+  "relations": {},
+  "dateAdded": "2020-12-02T07:30:14Z",
+  "dateModified": "2022-11-21T05:21:30Z"
+}

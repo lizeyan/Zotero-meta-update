@@ -1,0 +1,61 @@
+{
+  "key": "DY4P28AW",
+  "version": 2087,
+  "itemType": "conferencePaper",
+  "title": "Sinan: ML-based and QoS-aware resource management for cloud microservices",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Yanqi",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Weizhe",
+      "lastName": "Hua"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Zhuangzhuang",
+      "lastName": "Zhou"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "G. Edward",
+      "lastName": "Suh"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Christina",
+      "lastName": "Delimitrou"
+    }
+  ],
+  "abstractNote": "Cloud applications are increasingly shifting from large monolithic services, to large numbers of loosely-coupled, specialized microservices. Despite their advantages in terms of facilitating development, deployment, modularity, and isolation, microservices complicate resource management, as dependencies between them introduce backpressure effects and cascading QoS violations.",
+  "volume": "",
+  "pages": "167-181",
+  "date": "2021-4-19",
+  "series": "ASPLOS '21",
+  "language": "en",
+  "DOI": "10.1145/3445814.3446693",
+  "shortTitle": "",
+  "url": "http://dx.doi.org/10.1145/3445814.3446693",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "Zotero",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [],
+  "collections": [
+    "FYWZE8KC"
+  ],
+  "relations": {},
+  "dateAdded": "2021-04-02T02:02:52Z",
+  "dateModified": "2022-11-21T05:17:16Z",
+  "ISBN": "",
+  "place": "Virtual USA",
+  "proceedingsTitle": "Proceedings of the 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems",
+  "conferenceName": "ASPLOS '21: 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems",
+  "publisher": "ACM"
+}

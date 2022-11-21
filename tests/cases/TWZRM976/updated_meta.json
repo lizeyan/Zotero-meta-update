@@ -1,0 +1,123 @@
+{
+  "key": "TWZRM976",
+  "version": 6981,
+  "itemType": "conferencePaper",
+  "title": "Robust KPI Anomaly Detection for Large-Scale Software Services with Partial Labels",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Shenglin",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Chenyu",
+      "lastName": "Zhao"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yicheng",
+      "lastName": "Sui"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Ya",
+      "lastName": "Su"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yongqian",
+      "lastName": "Sun"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yuzhi",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Dan",
+      "lastName": "Pei"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yizhe",
+      "lastName": "Wang"
+    }
+  ],
+  "abstractNote": "To ensure the reliability of software services, operators collect and monitor a large number of KPI (Key Performance Indicator) streams constantly. KPI anomaly detection is vitally important for software service management. However, none of supervised learning methods, semi-supervised learning methods, transfer learning methods, or unsupervised learning methods achieve accurate anomaly detection for the large-scale, diverse, dynamically changing KPI streams with little labeling effort. In this paper, we propose PUAD, a PU learning-based method, to achieve accurate KPI anomaly detection requiring a few partial labels. It integrates clustering, PU learning, and semi-supervised learning to minimize labeling effort and improve anomaly detection accuracy simultaneously. Additionally, we propose a novel active learning method that selects the samples most likely to be positive in each iteration to avoid false alarms. We apply 208 real-world KPI streams collected from a large-scale software service provider to evaluate the performance of PUAD, demonstrating that it achieves a close F1-score to supervised learning methods with much fewer manual labels, and greatly outperforms semi-supervised learning methods, transfer learning methods, and unsupervised learning methods.",
+  "date": "2021-10",
+  "proceedingsTitle": "2021 IEEE 32nd International Symposium on Software Reliability Engineering (ISSRE)",
+  "conferenceName": "2021 IEEE 32nd International Symposium on Software Reliability Engineering (ISSRE)",
+  "place": "Wuhan, China",
+  "publisher": "IEEE",
+  "volume": "",
+  "pages": "103-114",
+  "series": "ISSRE 2021",
+  "language": "",
+  "DOI": "10.1109/issre52982.2021.00023",
+  "ISBN": "",
+  "shortTitle": "",
+  "url": "http://dx.doi.org/10.1109/issre52982.2021.00023",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "IEEE Xplore",
+  "callNumber": "",
+  "rights": "",
+  "extra": "0 citations (Crossref) [2022-10-27]\nISSN: 2332-6549",
+  "tags": [
+    {
+      "tag": "AIOps",
+      "type": 1
+    },
+    {
+      "tag": "Active learning",
+      "type": 1
+    },
+    {
+      "tag": "Anomaly detection",
+      "type": 1
+    },
+    {
+      "tag": "Key performance indicator",
+      "type": 1
+    },
+    {
+      "tag": "Labeling",
+      "type": 1
+    },
+    {
+      "tag": "Metrics",
+      "type": 1
+    },
+    {
+      "tag": "PU learning",
+      "type": 1
+    },
+    {
+      "tag": "Semisupervised learning",
+      "type": 1
+    },
+    {
+      "tag": "Software",
+      "type": 1
+    },
+    {
+      "tag": "Software reliability",
+      "type": 1
+    },
+    {
+      "tag": "Supervised learning",
+      "type": 1
+    },
+    {
+      "tag": "Transfer learning",
+      "type": 1
+    }
+  ],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2022-10-27T08:06:16Z",
+  "dateModified": "2022-10-27T08:06:25Z"
+}

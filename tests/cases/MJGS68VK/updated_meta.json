@@ -1,0 +1,90 @@
+{
+  "key": "MJGS68VK",
+  "version": 4307,
+  "itemType": "journalArticle",
+  "title": "PyTorch distributed: experiences on accelerating data parallel training",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Shen",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yanli",
+      "lastName": "Zhao"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Rohan",
+      "lastName": "Varma"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Omkar",
+      "lastName": "Salpekar"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Pieter",
+      "lastName": "Noordhuis"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Teng",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Adam",
+      "lastName": "Paszke"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Jeff",
+      "lastName": "Smith"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Brian",
+      "lastName": "Vaughan"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Pritam",
+      "lastName": "Damania"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Soumith",
+      "lastName": "Chintala"
+    }
+  ],
+  "abstractNote": "",
+  "publicationTitle": "Proceedings of the VLDB Endowment",
+  "volume": "13",
+  "issue": "12",
+  "pages": "3005-3018",
+  "date": "2020-8",
+  "series": "",
+  "seriesTitle": "",
+  "seriesText": "",
+  "journalAbbreviation": "Proc. VLDB Endow.",
+  "language": "",
+  "DOI": "10.14778/3415478.3415530",
+  "ISSN": "",
+  "shortTitle": "",
+  "url": "http://dx.doi.org/10.14778/3415478.3415530",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2021-09-16T06:29:33Z",
+  "dateModified": "2021-09-16T06:31:16Z"
+}

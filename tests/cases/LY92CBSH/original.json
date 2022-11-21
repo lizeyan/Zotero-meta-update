@@ -1,0 +1,64 @@
+{
+  "key": "LY92CBSH",
+  "version": 4340,
+  "itemType": "conferencePaper",
+  "title": "A reduction of imitation learning and structured prediction to no-regret online learning",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "St\u00e9phane",
+      "lastName": "Ross"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Geoffrey J.",
+      "lastName": "Gordon"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Drew",
+      "lastName": "Bagnell"
+    },
+    {
+      "creatorType": "editor",
+      "firstName": "Geoffrey J.",
+      "lastName": "Gordon"
+    },
+    {
+      "creatorType": "editor",
+      "firstName": "David B.",
+      "lastName": "Dunson"
+    },
+    {
+      "creatorType": "editor",
+      "firstName": "Miroslav",
+      "lastName": "Dud\u00edk"
+    }
+  ],
+  "abstractNote": "",
+  "date": "2011",
+  "proceedingsTitle": "Proceedings of the fourteenth international conference on artificial intelligence and statistics, AISTATS 2011, fort lauderdale, USA, april 11-13, 2011",
+  "conferenceName": "",
+  "place": "",
+  "publisher": "JMLR.org",
+  "volume": "15",
+  "pages": "627\u2013635",
+  "series": "JMLR proceedings",
+  "language": "",
+  "DOI": "",
+  "ISBN": "",
+  "shortTitle": "",
+  "url": "http://proceedings.mlr.press/v15/ross11a/ross11a.pdf",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "",
+  "callNumber": "",
+  "rights": "",
+  "extra": "tex.bibsource: dblp computer science bibliography, https://dblp.org\ntex.biburl: https://dblp.org/rec/journals/jmlr/RossGB11.bib\ntex.timestamp: Wed, 29 May 2019 08:41:48 +0200",
+  "tags": [],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2021-09-17T06:57:14Z",
+  "dateModified": "2021-09-17T06:57:22Z"
+}

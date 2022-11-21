@@ -1,0 +1,56 @@
+{
+  "key": "8MQ9XHV7",
+  "version": 4270,
+  "itemType": "conferencePaper",
+  "title": "MicroRAS: Automatic Recovery in the Absence of Historical Failure Data for Microservice Systems",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Li",
+      "lastName": "Wu"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Johan",
+      "lastName": "Tordsson"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Alexander",
+      "lastName": "Acker"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Odej",
+      "lastName": "Kao"
+    }
+  ],
+  "abstractNote": "Microservices represent a popular paradigm to construct large-scale applications in many domains thanks to benefits such as scalability, flexibility, and agility. However, it is difficult to manage and operate a microservice system due to its high dynamics and complexity. In particular, the frequent updates of microservices lead to the absence of historical failure data, where the current automatic recovery methods fail short. In this paper, we propose an automatic recovery method named MicroRAS, which requires no historical failure data, to mitigate performance issues in microservice systems. MicroRAS is a model-driven method that selects the appropriate recovery action with a trade-off between the effectiveness and recovery time of actions. It estimates the effectiveness of an action in terms of its effects of recovering the pinpointed faulty service and its effects of interfering with other services. The estimation of action effects is based on a system-state model represented by an attributed graph that tracks the propagation of effects. For the experimental evaluation, several types of anomalies are injected into a microservice system based on Kubernetes, which also serves a real-world workload. The corresponding benchmarks show that the actions selected by MicroRAS can recover the faulty services by 94.7%, and reduce the interference to other services by at least 44.3% compared to baseline methods.",
+  "date": "2020",
+  "proceedingsTitle": "UCC 20",
+  "conferenceName": "13th IEEE/ACM International Conference on Utility and Cloud Computing",
+  "place": "",
+  "publisher": "",
+  "volume": "",
+  "pages": "11",
+  "series": "",
+  "language": "en",
+  "DOI": "",
+  "ISBN": "",
+  "shortTitle": "",
+  "url": "",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "Zotero",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [],
+  "collections": [
+    "BMJY3QIM"
+  ],
+  "relations": {},
+  "dateAdded": "2020-11-06T02:45:00Z",
+  "dateModified": "2021-09-15T09:10:39Z"
+}

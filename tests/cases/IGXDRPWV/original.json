@@ -1,0 +1,114 @@
+{
+  "key": "IGXDRPWV",
+  "version": 2085,
+  "itemType": "journalArticle",
+  "title": "A Spatiotemporal Deep Learning Approach for Unsupervised Anomaly Detection in Cloud Systems",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Z.",
+      "lastName": "He"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "P.",
+      "lastName": "Chen"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "X.",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Y.",
+      "lastName": "Wang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "G.",
+      "lastName": "Yu"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "C.",
+      "lastName": "Chen"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "X.",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Z.",
+      "lastName": "Zheng"
+    }
+  ],
+  "abstractNote": "Anomaly detection is a critical task for maintaining the performance of a cloud system. Using data-driven methods to address this issue is the mainstream in recent years. However, due to the lack of labeled data for training in practice, it is necessary to enable an anomaly detection model trained on contaminated data in an unsupervised way. Besides, with the increasing complexity of cloud systems, effectively organizing data collected from a wide range of components of a system and modeling spatiotemporal dependence among them become a challenge. In this article, we propose TopoMAD, a stochastic seq2seq model which can robustly model spatial and temporal dependence among contaminated data. We include system topological information to organize metrics from different components and apply sliding windows over metrics collected continuously to capture the temporal dependence. We extract spatial features with the help of graph neural networks and temporal features with long short-term memory networks. Moreover, we develop our model based on variational auto-encoder, enabling it to work well robustly even when trained on contaminated data. Our approach is validated on the run-time performance data collected from two representative cloud systems, namely, a big data batch processing system and a microservice-based transaction processing system. The experimental results show that TopoMAD outperforms some state-of-the-art methods on these two data sets.",
+  "publicationTitle": "IEEE Transactions on Neural Networks and Learning Systems",
+  "volume": "",
+  "issue": "",
+  "pages": "1-15",
+  "date": "2020",
+  "series": "",
+  "seriesTitle": "",
+  "seriesText": "",
+  "journalAbbreviation": "",
+  "language": "",
+  "DOI": "10.1109/TNNLS.2020.3027736",
+  "ISSN": "2162-2388",
+  "shortTitle": "",
+  "url": "",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "IEEE Xplore",
+  "callNumber": "",
+  "rights": "",
+  "extra": "Conference Name: IEEE Transactions on Neural Networks and Learning Systems",
+  "tags": [
+    {
+      "tag": "Anomaly detection",
+      "type": 1
+    },
+    {
+      "tag": "Cloud computing",
+      "type": 1
+    },
+    {
+      "tag": "Data models",
+      "type": 1
+    },
+    {
+      "tag": "Measurement",
+      "type": 1
+    },
+    {
+      "tag": "Spatiotemporal phenomena",
+      "type": 1
+    },
+    {
+      "tag": "Time series analysis",
+      "type": 1
+    },
+    {
+      "tag": "neural networks",
+      "type": 1
+    },
+    {
+      "tag": "unsupervised anomaly detection",
+      "type": 1
+    },
+    {
+      "tag": "variational auto-encoder (VAE).",
+      "type": 1
+    }
+  ],
+  "collections": [
+    "BMJY3QIM"
+  ],
+  "relations": {},
+  "dateAdded": "2020-10-27T05:22:44Z",
+  "dateModified": "2020-10-27T05:22:45Z"
+}

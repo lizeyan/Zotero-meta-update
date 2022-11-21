@@ -1,0 +1,108 @@
+{
+  "key": "PPTNGM97",
+  "version": 6790,
+  "itemType": "conferencePaper",
+  "title": "Deep Attentive Anomaly Detection for Microservice Systems with Multimodal Time-Series Data",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Yufu",
+      "lastName": "Chen"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Meng",
+      "lastName": "Yan"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Dan",
+      "lastName": "Yang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Xiaohong",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Ziliang",
+      "lastName": "Wang"
+    }
+  ],
+  "abstractNote": "Software architecture is undergoing a transition from monolithic architectures to microservices to achieve resilience, agility, and scalability in the software life circle. However, microservice architecture is not perfect and suffers from intermittent faults, leading to economic and user losses. Therefore, it is essential to detect anomalies in microservice systems accurately. The key limitation of current approaches lies in a lack of ability to detect multitype anomalies, excessive resource overhead, and requirements of expert knowledge. In this paper, we present a Deep Attentive anomaly detection approach with Multimodal data named DAM. With multimodal fusion, attentive LSTM, and a dynamic threshold selecting algorithm, DAM could detect anomalies accurately and efficiently in an unsupervised manner. We evaluate our approach by injecting six types of anomalies on a widely used microservice system, Train-Ticket. The result shows that DAM could detect multitype anomalies well, with 80.46% F-measure, achieving 16.76% and 29.52% improvement over two state-of-the-art baselines (Donut and DAGMM), respectively.",
+  "date": "2022-7",
+  "proceedingsTitle": "2022 IEEE International Conference on Web Services (ICWS)",
+  "conferenceName": "2022 IEEE International Conference on Web Services (ICWS)",
+  "place": "Barcelona, Spain",
+  "publisher": "IEEE",
+  "volume": "",
+  "pages": "373-378",
+  "series": "ICWS 2022",
+  "language": "",
+  "DOI": "10.1109/icws55610.2022.00062",
+  "ISBN": "",
+  "shortTitle": "",
+  "url": "http://dx.doi.org/10.1109/icws55610.2022.00062",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "IEEE Xplore",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [
+    {
+      "tag": "Computer architecture",
+      "type": 1
+    },
+    {
+      "tag": "Dams",
+      "type": 1
+    },
+    {
+      "tag": "Heuristic algorithms",
+      "type": 1
+    },
+    {
+      "tag": "LSTM",
+      "type": 1
+    },
+    {
+      "tag": "Microservice architectures",
+      "type": 1
+    },
+    {
+      "tag": "Scalability",
+      "type": 1
+    },
+    {
+      "tag": "Software architecture",
+      "type": 1
+    },
+    {
+      "tag": "Web services",
+      "type": 1
+    },
+    {
+      "tag": "anomaly detection",
+      "type": 1
+    },
+    {
+      "tag": "attention network",
+      "type": 1
+    },
+    {
+      "tag": "microservice",
+      "type": 1
+    },
+    {
+      "tag": "multimodal data",
+      "type": 1
+    }
+  ],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2022-09-20T09:56:56Z",
+  "dateModified": "2022-11-21T05:20:46Z"
+}

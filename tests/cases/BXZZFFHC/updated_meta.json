@@ -1,0 +1,79 @@
+{
+  "key": "BXZZFFHC",
+  "version": 6473,
+  "itemType": "conferencePaper",
+  "title": "Matrix Profile I: All Pairs Similarity Joins for Time Series: A Unifying View That Includes Motifs, Discords and Shapelets",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Chin-Chia Michael",
+      "lastName": "Yeh"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yan",
+      "lastName": "Zhu"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Liudmila",
+      "lastName": "Ulanova"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Nurjahan",
+      "lastName": "Begum"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yifei",
+      "lastName": "Ding"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Hoang Anh",
+      "lastName": "Dau"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Diego Furtado",
+      "lastName": "Silva"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Abdullah",
+      "lastName": "Mueen"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Eamonn",
+      "lastName": "Keogh"
+    }
+  ],
+  "abstractNote": "The all-pairs-similarity-search (or similarity join) problem has been extensively studied for text and a handful of other datatypes. However, surprisingly little progress\u0121 has been made on similarity joins for time series subsequences. The lack of progress probably stems from the daunting nature of the problem. For even modest sized datasets the obvious nested-loop algorithm can take months, and the typical speed-up techniques in this domain (i.e., indexing, lower-bounding, triangular-inequality pruning and early abandoning) at best produce one or two orders of magnitude speedup. In this work we introduce a novel scalable algorithm for time series subsequence all-pairs-similarity-search. For exceptionally large datasets, the algorithm can be trivially cast as an anytime algorithm and produce high-quality approximate solutions in reasonable time. The exact similarity join algorithm computes the answer to the time series motif and time series discord problem as a side-effect, and our algorithm incidentally provides the fastest known algorithm for both these extensively-studied problems. We demonstrate the utility of our ideas for two time series data mining problems, including motif discovery\u0121 and novelty discovery.",
+  "date": "2016-12",
+  "proceedingsTitle": "2016 IEEE 16th International Conference on Data Mining (ICDM)",
+  "conferenceName": "2016 IEEE 16th International Conference on Data Mining (ICDM)",
+  "place": "Barcelona, Spain",
+  "publisher": "IEEE",
+  "volume": "",
+  "pages": "1317-1322",
+  "series": "ICDM 2016",
+  "language": "en",
+  "DOI": "10.1109/icdm.2016.0179",
+  "ISBN": "978-1-5090-5473-2",
+  "shortTitle": "Matrix Profile I",
+  "url": "http://dx.doi.org/10.1109/icdm.2016.0179",
+  "accessDate": "2022-04-14T06:56:40Z",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "DOI.org (Crossref)",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2022-04-14T06:56:40Z",
+  "dateModified": "2022-11-21T05:22:10Z"
+}
