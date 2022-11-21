@@ -6,15 +6,26 @@ from typing import Optional
 
 import requests
 from loguru import logger
+from requests.adapters import HTTPAdapter, Retry
 
 from work.utils import are_title_almost_equal, are_doi_equal
+
+
+_session = requests.Session()
+_adapter = HTTPAdapter(
+    max_retries=Retry(
+        total=10, backoff_factor=1, allowed_methods=None, status_forcelist=[429, 500, 502, 503, 504]
+    )
+)
+_session.mount("http://", _adapter)
+_session.mount("https://", _adapter)
 
 
 @lru_cache(maxsize=None)
 def search_on_crossref_by_doi(doi: str) -> Optional[dict]:
     logger.debug(f"search_on_crossref_by_doi {doi=}")
     try:
-        data = requests.get(f"https://api.crossref.org/works/{doi}").json()
+        data = _session.get(f"https://api.crossref.org/works/{doi}").json()
         return data["message"]
     except Exception as e:
         logger.error(f"search_on_crossref_by_doi {doi} failed: {e}")
@@ -25,7 +36,7 @@ def search_on_crossref_by_doi(doi: str) -> Optional[dict]:
 def search_on_crossref_by_title(title: str) -> Optional[dict]:
     logger.debug(f"search_on_crossref_by_title {title=}")
     try:
-        data = requests.get(
+        data = _session.get(
             f"https://api.crossref.org/works", params={
                 "query": title,
             }
@@ -65,7 +76,7 @@ def search_on_DBLP_by_title(
     """
     logger.debug(f"search_on_DBLP_by_title {title=} {doi=}")
     try:
-        data = requests.get(
+        data = _session.get(
             f"https://dblp.org/search/publ/api", params={
                 "q": title,
                 "format": "json",
@@ -82,7 +93,7 @@ def search_on_DBLP_by_title(
             if first_author is not None and first_author != "":
                 # search with first author
                 logger.debug(f"search_on_DBLP_by_title {title=} {doi=} with {first_author=}")
-                data = requests.get(
+                data = _session.get(
                     f"https://dblp.org/search/publ/api", params={
                         "q": f"{title} {first_author}",
                         "format": "json",
@@ -121,7 +132,7 @@ def get_venue_info_on_DBLP(key: str, year: str):
     logger.debug(f"get_venue_info_on_DBLP {key=} {year=}")
     try:
         # noinspection PyTypeChecker
-        venue_tree = ET.parse(StringIO(requests.get(
+        venue_tree = ET.parse(StringIO(_session.get(
             f"https://dblp.org/rec/{key}/{year}.xml"
         ).content.decode("utf-8")))
         return {
@@ -138,7 +149,7 @@ def search_journal_by_openAlex(title: str):
     logger.debug(f"search_journal_by_openAlex {title=}")
     try:
         # noinspection PyTypeChecker
-        data = requests.get(
+        data = _session.get(
             "https://api.openalex.org/journals",
             params={"search": title},
         ).json()

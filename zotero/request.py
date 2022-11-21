@@ -32,6 +32,7 @@ def download_items(output_dir: Path = Path("./output")) -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
     assert output_dir.is_dir(), f"{output_dir} is not a directory"
     count = 0
+    dt = datetime.now()
     while True:
         items = requests.get(
             f"https://api.zotero.org/users/{zotero_user_id()}/items",
@@ -53,7 +54,7 @@ def download_items(output_dir: Path = Path("./output")) -> int:
             item_output_dir.mkdir(parents=True, exist_ok=True)
             with open(item_output_dir / "original.json", 'w') as f:
                 json.dump(item, f, indent=2)
-            with open(item_output_dir / f"original-{datetime.now().isoformat()}.json", 'w+') as f:
+            with open(item_output_dir / f"original-{dt.isoformat()}.json", 'w+') as f:
                 json.dump(item, f, indent=2)
     return count
 

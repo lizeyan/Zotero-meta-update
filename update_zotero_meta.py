@@ -1,45 +1,36 @@
 import json
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Optional
 
 from click import command, option
 from loguru import logger
 from pytz import timezone
 
-from work import lookup
 from zotero import download_items
+from zotero.metadata import get_updated_zotero_meta_for_item, get_update_time
 from zotero.request import write_metadata_to_zotero
 
 
-def update_zotero_meta_for_item(original_meta: Dict) -> Optional[Dict]:
-    extra_info = {}
-    if "creator" in original_meta and len(original_meta["creator"]) > 0:
-        if 'name' in original_meta["creator"][0]:
-            extra_info["first_author"] = original_meta["creator"][0]["name"]
-        elif 'lastName' in original_meta["creator"][0]:
-            extra_info["first_author"] = f"{original_meta['creator'][0]['lastName']}"
-    work = lookup(
-        title=original_meta.get('title', None),
-        doi=original_meta.get("DOI", None),
-        extra_info=extra_info,
-    )
-    if work is not None:
-        new_meta = work.update_zotero_item_data(original_meta)
-        return new_meta
-    else:
-        logger.error(f"Cannot find {original_meta.get('title', None)=} {original_meta.get('DOI', None)=}")
-        return None
-
-
-def check_difference(a, b) -> bool:
+def check_difference(a, b, skip_confirmation: bool) -> bool:
     print(f"itemType: {a['itemType']=:15}, {b['itemType']=:15}")
     print(f"Missing keys:    {set(a.keys()) - set(b.keys())=}")
     print(f"Additional keys: {set(b.keys()) - set(a.keys())=}")
     print(f"Title: {b['title']}")
-    for key in set(a.keys()) | set(b.keys()):
+    nothing_changed = True
+    for key in (set(a.keys()) | set(b.keys())) - {'extra', 'dateModified'}:
         if a.get(key, "NaN") != b.get(key, 'NaN'):
+            nothing_changed = False
             print(f"{key:10} changed from {a.get(key, 'NaN')!r:10} to {b.get(key, 'NaN')!r:10}")
+    if nothing_changed and get_update_time(a) is not None:
+        """
+        If get_update_time(a) is not None, the original metadata has no mark that it has been updated
+        We want to mark it to skip online search in future runs
+        """
+        logger.info(f"Skip write because nothing changed")
+        return False
+    if skip_confirmation:
+        return True
     choice = input("Skip (s, default) or write to server (w)")
     if choice.lower() == "write" or choice.lower() == "w":
         return True
@@ -87,7 +78,7 @@ def main(
         logger.info("Skip download original metadata files from Zotero server.")
 
     paths = output_dir.glob("*")
-    # paths = [output_dir / '9ZH8QUHM']  # DEBUG
+    # paths = [output_dir / '7V4PUQCN']  # DEBUG
     failed_items = []
 
     for item_path in paths:
@@ -103,11 +94,9 @@ def main(
             except Exception as e:
                 logger.error(f"Cannot load {item_path / 'original.json'}: {e}")
                 continue
-            date_modified: datetime = datetime.strptime(
-                original_meta["dateModified"], "%Y-%m-%dT%H:%M:%SZ"
-            ).replace(tzinfo=timezone("UTC")).astimezone(timezone("Asia/Shanghai"))
+            date_modified: Optional[datetime] = get_update_time(original_meta)
             logger.info(f"item {original_meta['key']} is modified at {date_modified}")
-            if date_modified > dt_threshold:
+            if date_modified is not None and date_modified > dt_threshold:
                 logger.info(f"Skip {item_path.name} since it has been updated recently.")
                 continue
 
@@ -128,13 +117,14 @@ def main(
                     new_meta = None
             else:
                 logger.info(f"Updating metadata for {item_path.name}")
-                new_meta = update_zotero_meta_for_item(original_meta)
+                new_meta = get_updated_zotero_meta_for_item(original_meta)
             if new_meta is not None:
                 with open(item_path / "updated_meta.json", "w+") as f:
                     json.dump(new_meta, f, indent=2)
                 with open(item_path / f"updated_meta-{datetime.now().isoformat()}.json", "w+") as f:
                     json.dump(new_meta, f, indent=2)
-                if write and (skip_confirmation or check_difference(original_meta, new_meta)):
+                confirmation = check_difference(original_meta, new_meta, skip_confirmation=skip_confirmation)
+                if write and confirmation:
                     logger.info("Write to server")
                     write_metadata_to_zotero(original_meta['key'], new_meta)
                 else:
@@ -142,7 +132,7 @@ def main(
             else:
                 failed_items.append(item_path)
         except Exception as e:
-            logger.error(f"Exception encountered when processing {item_path=}", exception=e)
+            logger.exception(f"Exception encountered when processing {item_path=}", exception=e)
             failed_items.append(item_path)
         finally:
             logger.info(f"============================END=====================================")

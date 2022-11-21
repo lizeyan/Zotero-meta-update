@@ -170,7 +170,7 @@ class Work:
                     if 'name' in new_author_info and "firstName" in author_info:
                         logger.info(
                             "Since the author name is not in the format of 'last name, first name', "
-                            "we do not update the author info"
+                            f"we do not update the author info: {new_author_info=} {author_info=}"
                         )
                     else:
                         logger.info(f"update creators from {author_info} to {new_author_info} for {data['key']=}")

@@ -4,7 +4,7 @@ from typing import List, Tuple, Dict, Optional
 
 import pytest
 
-from update_zotero_meta import update_zotero_meta_for_item
+from zotero.metadata import get_updated_zotero_meta_for_item
 
 
 def load_cases() -> List[Tuple[Dict, Optional[Dict]]]:
@@ -27,11 +27,15 @@ def load_cases() -> List[Tuple[Dict, Optional[Dict]]]:
 )
 def test_update_zotero_meta(original_meta, updated_meta):
     print(original_meta["key"])
-    new_meta = update_zotero_meta_for_item(original_meta)
+    new_meta = get_updated_zotero_meta_for_item(original_meta)
     if "dateModified" in new_meta:
         del new_meta["dateModified"]
     if "dateModified" in updated_meta:
         del updated_meta["dateModified"]
+    if "extra" in new_meta:
+        del new_meta["extra"]
+    if "extra" in updated_meta:
+        del updated_meta["extra"]
     if updated_meta is not None:
         assert new_meta is not None and new_meta == updated_meta
     else:
