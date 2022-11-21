@@ -1,0 +1,73 @@
+{
+  "key": "GJYUPAL3",
+  "version": 5813,
+  "itemType": "journalArticle",
+  "title": "GRANO: interactive graph-based root cause analysis for cloud-native distributed data platform",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Hanzhang",
+      "lastName": "Wang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Phuong",
+      "lastName": "Nguyen"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Jun",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Selcuk",
+      "lastName": "Kopru"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Gene",
+      "lastName": "Zhang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Sanjeev",
+      "lastName": "Katariya"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Sami",
+      "lastName": "Ben-Romdhane"
+    }
+  ],
+  "abstractNote": "We demonstrate Grano1, an end-to-end anomaly detection and root cause analysis (or RCA for short) system for cloud-native distributed data platform by providing a holistic view of the system component topology, alarms and application events. Grano provides: a Detection Layer to process large amount of time-series monitoring data to detect anomalies at logical and physical system components; an Anomaly Graph Layer with novel graph modeling and algorithms for leveraging system topology data and detection results to identify the root cause relevance at the system component level; and an Application Layer that automatically noti\ufb01es on-call personnel and presents real-time and on-demand RCA support through an interactive graph interface. The system is deployed and evaluated using eBay\u2019s production data to help on-call personnel to shorten the identi\ufb01cation of root cause from hours to minutes.",
+  "publicationTitle": "Proceedings of the VLDB Endowment",
+  "volume": "12",
+  "issue": "12",
+  "pages": "1942-1945",
+  "date": "2019-8",
+  "series": "",
+  "seriesTitle": "",
+  "seriesText": "",
+  "journalAbbreviation": "Proc. VLDB Endow.",
+  "language": "en",
+  "DOI": "10.14778/3352063.3352105",
+  "ISSN": "2150-8097",
+  "shortTitle": "GRANO",
+  "url": "http://dx.doi.org/10.14778/3352063.3352105",
+  "accessDate": "2022-01-12T01:45:38Z",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "DOI.org (Crossref)",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [],
+  "collections": [
+    "ASZWWGJ5",
+    "BMJY3QIM"
+  ],
+  "relations": {},
+  "dateAdded": "2022-01-12T01:45:38Z",
+  "dateModified": "2022-01-12T01:45:40Z"
+}

@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 from functools import lru_cache
 
-__all__ = ['download_items']
+__all__ = ['download_items', 'write_metadata_to_zotero']
 
 from pathlib import Path
 
@@ -41,10 +41,13 @@ def download_items(output_dir: Path = Path("./output")) -> int:
                 "start": f"{count}",
             }
         ).json()
+        logger.info(f"{len(items)} fetched")
         if len(items) == 0:
             break
         count += len(items)
         for item in items:
+            if item["data"]["itemType"] == "attachment":
+                continue
             item_output_dir = output_dir / item["key"]
             item_output_dir.mkdir(parents=True, exist_ok=True)
             with open(item_output_dir / "original.json", 'w') as f:

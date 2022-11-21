@@ -1,0 +1,94 @@
+{
+  "key": "VBJYBAS6",
+  "version": 3315,
+  "itemType": "journalArticle",
+  "title": "Interpretable Anomaly Detection in Event Sequences via Sequence Matching and Visual Comparison",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Shunan",
+      "lastName": "Guo"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Zhuochen",
+      "lastName": "Jin"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Qing",
+      "lastName": "Chen"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "David",
+      "lastName": "Gotz"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Hongyuan",
+      "lastName": "Zha"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Nan",
+      "lastName": "Cao"
+    }
+  ],
+  "abstractNote": "Anomaly detection is a common analytical task that aims to identify rare cases that differ from the typical cases that make up the majority of a dataset. When analyzing event sequence data, the task of anomaly detection can be complex because the sequential and temporal nature of such data results in diverse definitions and flexible forms of anomalies. This, in turn, increases the difficulty in interpreting detected anomalies. In this paper, we propose a visual analytic approach for detecting anomalous sequences in an event sequence dataset via an unsupervised anomaly detection algorithm based on Variational AutoEncoders. We further compare the anomalous sequences with their reconstructions and with the normal sequences through a sequence matching algorithm to identify event anomalies. A visual analytics system is developed to support interactive exploration and interpretations of anomalies through novel visualization designs that facilitate the comparison between anomalous sequences and normal sequences. Finally, we quantitatively evaluate the performance of our anomaly detection algorithm, demonstrate the effectiveness of our system through case studies, and report feedback collected from study participants.",
+  "publicationTitle": "IEEE Transactions on Visualization and Computer Graphics",
+  "volume": "",
+  "issue": "",
+  "pages": "1-1",
+  "date": "2021",
+  "series": "",
+  "seriesTitle": "",
+  "seriesText": "",
+  "journalAbbreviation": "",
+  "language": "",
+  "DOI": "10.1109/TVCG.2021.3093585",
+  "ISSN": "1941-0506",
+  "shortTitle": "",
+  "url": "",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "IEEE Xplore",
+  "callNumber": "",
+  "rights": "",
+  "extra": "Conference Name: IEEE Transactions on Visualization and Computer Graphics",
+  "tags": [
+    {
+      "tag": "Anomaly detection",
+      "type": 1
+    },
+    {
+      "tag": "Data models",
+      "type": 1
+    },
+    {
+      "tag": "Data visualization",
+      "type": 1
+    },
+    {
+      "tag": "Diabetes",
+      "type": 1
+    },
+    {
+      "tag": "Heart",
+      "type": 1
+    },
+    {
+      "tag": "Sequences",
+      "type": 1
+    },
+    {
+      "tag": "Task analysis",
+      "type": 1
+    }
+  ],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2021-07-05T11:30:44Z",
+  "dateModified": "2021-07-05T11:30:44Z"
+}

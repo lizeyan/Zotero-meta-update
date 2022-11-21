@@ -1,0 +1,72 @@
+{
+  "key": "DUDMZXUU",
+  "version": 6660,
+  "itemType": "journalArticle",
+  "title": "Microservice extraction based on knowledge graph from monolithic applications",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Zhiding",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Chenqi",
+      "lastName": "Shang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Jianjie",
+      "lastName": "Wu"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yuan",
+      "lastName": "Li"
+    }
+  ],
+  "abstractNote": "Context\nRe-architecting monolithic systems with microservice architecture is a common trend. However, determining the \"optimal\" size of individual services during microservice extraction has been a challenge in software engineering. Common limitations of the literature include not being reasonable enough to be put into practical application; relying too much on human experience; neglection of the impact of hardware environment on the performance.\nObjective\nTo address these problems, this paper proposes a novel method based on knowledge-graph to support the extraction of microservices during the initial phases of re-architecting existing applications.\nMethod\nAccording to the microservice extraction method based on the AKF principle which is a widely practiced microservice design principle in the industry, four kinds of entities and four types of entity-entity relationships are designed and automatically extracted from specification and design artifacts of the monolithic application to build the knowledge graph. A constrained Louvain algorithm is proposed to identify microservice candidates.\nResults\nOur approach is tested based on two open-source projects with the other three typical methods: the domain-driven design-based method, the similarity calculation-based method, and the graph clustering-based method . Conducted experiments show that our method performs well concerning all the evaluation metrics.",
+  "publicationTitle": "Information and Software Technology",
+  "volume": "150",
+  "issue": "",
+  "pages": "106992",
+  "date": "2022-10-01",
+  "series": "",
+  "seriesTitle": "",
+  "seriesText": "",
+  "journalAbbreviation": "Information and Software Technology",
+  "language": "en",
+  "DOI": "10.1016/j.infsof.2022.106992",
+  "ISSN": "0950-5849",
+  "shortTitle": "",
+  "url": "http://dx.doi.org/10.1016/j.infsof.2022.106992",
+  "accessDate": "2022-07-09T05:06:09Z",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "ScienceDirect",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [
+    {
+      "tag": "Constrained Louvain algorithm",
+      "type": 1
+    },
+    {
+      "tag": "Knowledge graph",
+      "type": 1
+    },
+    {
+      "tag": "Microservice extraction",
+      "type": 1
+    },
+    {
+      "tag": "Monolithic architecture",
+      "type": 1
+    }
+  ],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2022-07-09T05:06:10Z",
+  "dateModified": "2022-07-09T05:06:10Z"
+}

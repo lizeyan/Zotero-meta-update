@@ -5,6 +5,7 @@ from typing import Dict, Optional
 
 from click import command, option
 from loguru import logger
+from pytz import timezone
 
 from work import lookup
 from zotero import download_items
@@ -53,24 +54,35 @@ def check_difference(a, b) -> bool:
 )
 @option(
     "--min-update-interval-days", "-d", type=int, default=7,
-    help="If an item has beed updated in `min-update-interval-days` days, it will be skipped."
+    help="If an item has been updated in `min-update-interval-days` days, it will be skipped."
 )
 @option(
     "--skip-download", "-s", is_flag=True, default=False,
     help="If true, we skip download original metadata files from Zotero server."
 )
 @option(
+    "--skip-online-update", is_flag=True, default=False,
+    help="If true, we skip update online and just read the newest updated metadata."
+)
+@option(
     "--write", "-w", is_flag=True, default=False,
     help="If true, we write the updated metadata files to Zotero server."
 )
-def main(output_dir: Path, min_update_interval_days: int, skip_download: bool, write: bool):
+def main(
+        output_dir: Path, min_update_interval_days: int, skip_download: bool, write: bool, skip_online_update: bool
+):
     logger.add(output_dir / "log.txt", rotation="1 week", retention="1 month")
     logger.info(f"=========================START===============================")
-    dt_threshold = datetime.now() - timedelta(days=min_update_interval_days)
+    dt_threshold = datetime.now(timezone("Asia/Shanghai")) - timedelta(days=min_update_interval_days)
+    logger.info(f"{dt_threshold=}")
     if not skip_download:
+        logger.info("Downloading original metadata files from Zotero server...")
         download_items()
+    else:
+        logger.info("Skip download original metadata files from Zotero server.")
 
     paths = output_dir.glob("*")
+    # paths = [output_dir / 'IS3RVGPA']  # DEBUG
     failed_items = []
 
     for item_path in paths:
@@ -80,21 +92,33 @@ def main(output_dir: Path, min_update_interval_days: int, skip_download: bool, w
         try:
             logger.info(f"=========================START===============================")
             logger.info(f"Processing {item_path}")
-            if (
-                    updated_path := item_path / "updated_meta.json"
-            ).exists() and datetime.fromtimestamp(updated_path.stat().st_mtime) > dt_threshold:
-                logger.info(f"Skip {item_path.name} since it has been updated recently.")
-                continue
             try:
                 with open(item_path / "original.json", "r", encoding="utf-8") as f:
                     original_meta = json.load(f)['data']
             except Exception as e:
                 logger.error(f"Cannot load {item_path / 'original.json'}: {e}")
                 continue
+            date_modified: datetime = datetime.strptime(
+                original_meta["dateModified"], "%Y-%m-%dT%H:%M:%SZ"
+            ).replace(tzinfo=timezone("UTC")).astimezone(timezone("Asia/Shanghai"))
+            logger.info(f"item {original_meta['key']} is modified at {date_modified}")
+            if date_modified > dt_threshold:
+                logger.info(f"Skip {item_path.name} since it has been updated recently.")
+
             if original_meta["itemType"] == "attachment":
                 logger.error(f"Skip {item_path.name} since it is an attachment.")
                 continue
-            new_meta = update_zotero_meta_for_item(original_meta)
+            if skip_online_update:
+                try:
+                    with open(item_path / "updated_meta.json", "r") as f:
+                        new_meta = json.load(f)
+                    logger.info(f"Read updated metadata from {item_path / 'updated_meta.json'}")
+                except Exception as e:
+                    logger.error(f"Cannot load {item_path / 'updated_meta.json'}: {e}")
+                    new_meta = None
+            else:
+                logger.info(f"Updating metadata for {item_path.name}")
+                new_meta = update_zotero_meta_for_item(original_meta)
             if new_meta is not None:
                 with open(item_path / "updated_meta.json", "w+") as f:
                     json.dump(new_meta, f, indent=2)

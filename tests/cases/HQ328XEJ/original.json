@@ -1,0 +1,49 @@
+{
+  "key": "HQ328XEJ",
+  "version": 792,
+  "itemType": "book",
+  "title": "Software Engineering Meets Deep Learning: A Mapping Study",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Fabio",
+      "lastName": "Ferreira"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Luciana",
+      "lastName": "Silva"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Marco",
+      "lastName": "Valente"
+    }
+  ],
+  "abstractNote": "Deep Learning (DL) is being used nowadays in many traditional Software Engineering (SE) problems and tasks. However, since the renaissance of DL techniques is still very recent, we lack works that summarize and condense the most recent and relevant research conducted at the intersection of DL and SE. Therefore, in this paper, we describe the first results of a mapping study covering 81 papers about DL & SE. Our results confirm that DL is gaining momentum among SE researchers over the years and that the top-3 research problems tackled by the analyzed papers are documentation, defect prediction, and testing. CCS CONCEPTS \u2022 Software and its engineering; \u2022 Software organization and properties;",
+  "series": "",
+  "seriesNumber": "",
+  "volume": "",
+  "numberOfVolumes": "",
+  "edition": "",
+  "place": "",
+  "publisher": "",
+  "date": "March 22, 2021",
+  "numPages": "",
+  "language": "",
+  "ISBN": "",
+  "shortTitle": "Software Engineering Meets Deep Learning",
+  "url": "",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "ResearchGate",
+  "callNumber": "",
+  "rights": "",
+  "extra": "DOI: 10.1145/3412841.3442029",
+  "tags": [],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2020-12-15T05:45:48Z",
+  "dateModified": "2020-12-15T05:45:51Z"
+}

@@ -80,6 +80,11 @@ class Work:
             raise NotImplementedError()  # TODO
 
     def update_with_crossref_item_data(self, data: Optional[Dict]):
+        """
+        Update the work with the data from Crossref
+        :param data: see an example at https://api.crossref.org/works/10.1023/a:1010933404324
+        :return:
+        """
         if data is None:
             return
         if "title" in data and len(data["title"]) > 0:
@@ -96,6 +101,11 @@ class Work:
             self.doi = data["DOI"]
 
     def update_with_DBLP_item_data(self, data: Optional[Dict]):
+        """
+        Update the work with the data from DBLP
+        :param data: see an example at "https://dblp.org/search/publ/api?format=json&q=random forest Breiman"
+        :return:
+        """
         if data is None:
             return
         if "title" in data:
@@ -109,13 +119,30 @@ class Work:
         if "doi" in data:
             self.doi = data["doi"]
 
+    def update_with_zotero_data(self, data: dict):
+        """
+        Update the work with the data from Zotero
+        :param data: see examples at tests/cases/*/*.json
+        :return:
+        """
+        raise NotImplementedError()
+
     def update_zotero_item_data(self, data: dict) -> Dict:
+        """
+        Update the given Zotero metadata dictionary with the data from this work
+        :param data: The 'data' section of a Zotero item
+        :return: the updated metadata (deepcopyed from the parameter)
+        """
         data = deepcopy(data)
+
+        # If DOI mismatched, then the lookup stage is buggy, we should not update the data
         if data.get("DOI", "") != "" and not are_doi_equal(data["DOI"], self.doi):
             raise RuntimeError(f"DOI mismatch: {data['DOI']=} {self.doi=} {data['key']=}. Skip update metadata")
+        # If title mismatched, there could be a problem
         if data.get("DOI", "") == "" and not are_title_almost_equal(data["title"], self.title):
             logger.warning(f"Title mismatch: {data['title']=} {self.title=} {data['key']=}.")
 
+        # Update creators
         if "creators" not in data:
             logger.debug(f"creators not in {data['key']=}, create it")
             data["creators"] = []
@@ -132,10 +159,12 @@ class Work:
                     "creatorType": "author",
                     "name": name,
                 })
-        if len(new_author_infos) != len(data["creators"]):
+        # If the length of the new author list is different from the old one and is not empty, then we will use the new list
+        if len(new_author_infos) != len(data["creators"]) and len(new_author_infos) > 0:
             logger.debug(f"update creator from {data['creators']} to {new_author_infos} for {data['key']=}")
             data["creators"] = new_author_infos
         else:
+            # If the length of two lists are equal, we will update each different item.
             for idx, (author_info, new_author_info) in enumerate(zip(data["creators"], new_author_infos)):
                 if author_info != new_author_info:
                     if 'name' in new_author_info and "firstName" in author_info:
@@ -147,13 +176,23 @@ class Work:
                         logger.info(f"update creators from {author_info} to {new_author_info} for {data['key']=}")
                         data["creators"][idx] = new_author_info
 
+        # Update other fileds
         self._update_zotero_item_key(data, "DOI", "doi")
         self._update_zotero_item_key(data, "title", "title")
-        self._update_zotero_item_key(data, "date", "date")
+        if self.date is not None and self.date not in data.get('date', ""):
+            # e.g., self.date is '2016' (on DBLP, only year is recorded) and data['date'] is '2016-11-07'
+            self._update_zotero_item_key(data, "date", "date")
         self._update_zotero_item_key(data, "url", "url")
         return data
 
     def _update_zotero_item_key(self, data: Dict, field_name: str, attr_name: str):
+        """
+        If self.attr_name is not None and it is not equal to data[field_name], update the data[field_name] with self.attr_name
+        :param data:
+        :param field_name:
+        :param attr_name:
+        :return:
+        """
         if getattr(self, attr_name) is not None and data.get(field_name, "") != getattr(self, attr_name):
             logger.info(
                 f"update {field_name=} from {data.get(field_name, '')} to {getattr(self, attr_name)} for {data['key']=}"

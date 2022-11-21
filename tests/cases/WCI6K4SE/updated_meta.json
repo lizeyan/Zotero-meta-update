@@ -1,0 +1,60 @@
+{
+  "key": "WCI6K4SE",
+  "version": 1349,
+  "itemType": "journalArticle",
+  "title": "An Empirical Study of the Impact of Data Splitting Decisions on the Performance of AIOps Solutions",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Yingzhe",
+      "lastName": "Lyu"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Heng",
+      "lastName": "Li"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Mohammed",
+      "lastName": "Sayagh"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Zhen Ming (Jack)",
+      "lastName": "Jiang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Ahmed E.",
+      "lastName": "Hassan"
+    }
+  ],
+  "abstractNote": "",
+  "publicationTitle": "ACM Transactions on Software Engineering and Methodology",
+  "volume": "30",
+  "issue": "4",
+  "pages": "1-38",
+  "date": "2021-7",
+  "series": "",
+  "seriesTitle": "",
+  "seriesText": "",
+  "journalAbbreviation": "ACM Trans. Softw. Eng. Methodol.",
+  "language": "en",
+  "DOI": "10.1145/3447876",
+  "ISSN": "",
+  "shortTitle": "",
+  "url": "http://dx.doi.org/10.1145/3447876",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "Zotero",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2021-02-14T08:39:55Z",
+  "dateModified": "2021-02-14T08:39:55Z"
+}

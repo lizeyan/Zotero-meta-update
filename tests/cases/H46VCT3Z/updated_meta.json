@@ -1,0 +1,94 @@
+{
+  "key": "H46VCT3Z",
+  "version": 2394,
+  "itemType": "conferencePaper",
+  "title": "SuanMing: Explainable Prediction of Performance Degradations in Microservice Applications",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Johannes",
+      "lastName": "Grohmann"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Martin",
+      "lastName": "Straesser"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Avi",
+      "lastName": "Chalbani"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Simon",
+      "lastName": "Eismann"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Yair",
+      "lastName": "Arian"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Nikolas",
+      "lastName": "Herbst"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Noam",
+      "lastName": "Peretz"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Samuel",
+      "lastName": "Kounev"
+    }
+  ],
+  "abstractNote": "Application performance management (APM) tools are useful to observe the performance properties of an application during production. However, APM is normally purely reactive, that is, it can only report about current or past performance degradation. Although some approaches capable of predictive application monitoring have been proposed, they can only report a predicted degradation but cannot explain its root-cause, making it hard to prevent the expected degradation. In this paper, we present SuanMing---a framework for predicting performance degradation of microservice applications running in cloud environments. SuanMing is able to predict future root causes for anticipated performance degradations and therefore aims at preventing performance degradations before they actually occur. We evaluate SuanMing on two realistic microservice applications, TeaStore and TrainTicket, and we show that our approach is able to predict and pinpoint performance degradations with an accuracy of over 90%.",
+  "date": "2021-4-9",
+  "proceedingsTitle": "Proceedings of the ACM/SPEC International Conference on Performance Engineering",
+  "conferenceName": "ICPE '21: ACM/SPEC International Conference on Performance Engineering",
+  "place": "Virtual Event France",
+  "publisher": "ACM",
+  "volume": "",
+  "pages": "165-176",
+  "series": "ICPE '21",
+  "language": "",
+  "DOI": "10.1145/3427921.3450248",
+  "ISBN": "978-1-4503-8194-9",
+  "shortTitle": "SuanMing",
+  "url": "http://dx.doi.org/10.1145/3427921.3450248",
+  "accessDate": "2021-04-18",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "ACM Digital Library",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [
+    {
+      "tag": "explainability",
+      "type": 1
+    },
+    {
+      "tag": "forecasting",
+      "type": 1
+    },
+    {
+      "tag": "microservices",
+      "type": 1
+    },
+    {
+      "tag": "performance prediction",
+      "type": 1
+    }
+  ],
+  "collections": [
+    "FFKJJMVM",
+    "FYWZE8KC"
+  ],
+  "relations": {},
+  "dateAdded": "2021-04-19T02:10:42Z",
+  "dateModified": "2022-11-21T05:16:48Z"
+}

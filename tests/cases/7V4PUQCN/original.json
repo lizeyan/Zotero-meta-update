@@ -1,0 +1,101 @@
+{
+  "key": "7V4PUQCN",
+  "version": 2098,
+  "itemType": "conferencePaper",
+  "title": "Self-Supervised Anomaly Detection from Distributed Traces",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "J.",
+      "lastName": "Bogatinovski"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "S.",
+      "lastName": "Nedelkoski"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "J.",
+      "lastName": "Cardoso"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "O.",
+      "lastName": "Kao"
+    }
+  ],
+  "abstractNote": "Artificial Intelligence for IT Operations (AIOps) combines big data and machine learning to replace a broad range of IT Operations tasks including reliability and performance monitoring of services. By exploiting observability data, AIOps enable detection of faults and issues of services. The focus of this work is on detecting anomalies based on distributed tracing records that contain detailed information of the services of the distributed system. Timely and accurately detecting trace anomalies is very challenging due to the large number of underlying microservices and the complex call relationships between them. We addresses the problem anomaly detection from distributed traces with a novel self-supervised method and a new learning task formulation. The method is able to have high performance even in large traces and capture complex interactions between the services. The evaluation shows that the approach achieves high accuracy and solid performance in the experimental testbed.",
+  "date": "December 2020",
+  "proceedingsTitle": "2020 IEEE/ACM 13th International Conference on Utility and Cloud Computing (UCC)",
+  "conferenceName": "2020 IEEE/ACM 13th International Conference on Utility and Cloud Computing (UCC)",
+  "place": "",
+  "publisher": "",
+  "volume": "",
+  "pages": "342-347",
+  "series": "",
+  "language": "",
+  "DOI": "10.1109/UCC48980.2020.00054",
+  "ISBN": "",
+  "shortTitle": "",
+  "url": "",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "IEEE Xplore",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [
+    {
+      "tag": "Anomaly detection",
+      "type": 1
+    },
+    {
+      "tag": "Distributed databases",
+      "type": 1
+    },
+    {
+      "tag": "Measurement",
+      "type": 1
+    },
+    {
+      "tag": "Monitoring",
+      "type": 1
+    },
+    {
+      "tag": "Software reliability",
+      "type": 1
+    },
+    {
+      "tag": "Task analysis",
+      "type": 1
+    },
+    {
+      "tag": "Tools",
+      "type": 1
+    },
+    {
+      "tag": "anomaly detection",
+      "type": 1
+    },
+    {
+      "tag": "distributed systems",
+      "type": 1
+    },
+    {
+      "tag": "distributed traces",
+      "type": 1
+    },
+    {
+      "tag": "self-supervised learning",
+      "type": 1
+    }
+  ],
+  "collections": [
+    "TBIV2H49"
+  ],
+  "relations": {},
+  "dateAdded": "2021-01-05T11:56:40Z",
+  "dateModified": "2021-01-05T11:56:41Z"
+}

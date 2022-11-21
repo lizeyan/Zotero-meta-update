@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from functools import cached_property
 from typing import Optional, Dict, Set
 
@@ -76,4 +77,5 @@ class ConferencePaper(Work):
         self._update_zotero_item_key(data, "place", "location")
         self._update_zotero_item_key(data, "series", "series")
         self._update_zotero_item_key(data, "pages", "pages")
+        data["dateModified"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         return data

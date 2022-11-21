@@ -1,0 +1,40 @@
+{
+  "key": "U4APZ3GK",
+  "version": 4138,
+  "itemType": "journalArticle",
+  "title": "Random forests",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Leo",
+      "lastName": "Breiman"
+    }
+  ],
+  "abstractNote": "",
+  "publicationTitle": "Machine Learning",
+  "volume": "45",
+  "issue": "1",
+  "pages": "5-32",
+  "date": "2001",
+  "series": "",
+  "seriesTitle": "",
+  "seriesText": "",
+  "journalAbbreviation": "Mach. Learn.",
+  "language": "",
+  "DOI": "10.1023/a:1010933404324",
+  "ISSN": "",
+  "shortTitle": "",
+  "url": "http://dx.doi.org/10.1023/a:1010933404324",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "",
+  "callNumber": "",
+  "rights": "",
+  "extra": "tex.bibsource: dblp computer science bibliography, https://dblp.org\ntex.biburl: https://dblp.org/rec/journals/ml/Breiman01.bib\ntex.timestamp: Mon, 02 Mar 2020 16:29:57 +0100",
+  "tags": [],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2021-09-10T03:06:31Z",
+  "dateModified": "2021-09-10T03:06:55Z"
+}

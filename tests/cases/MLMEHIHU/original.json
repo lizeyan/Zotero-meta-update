@@ -1,0 +1,61 @@
+{
+  "key": "MLMEHIHU",
+  "version": 465,
+  "itemType": "conferencePaper",
+  "title": "Generic Outlier Detection in Multi-Armed Bandit",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Yikun",
+      "lastName": "Ban"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Jingrui",
+      "lastName": "He"
+    }
+  ],
+  "abstractNote": "In this paper, we study the problem of outlier arm detection in multi-armed bandit settings, which finds plenty of applications in many high-impact domains such as finance, healthcare, and online advertising. For this problem, a learner aims to identify the arms whose expected rewards deviate significantly from most of the other arms. Different from existing work, we target the generic outlier arms or outlier arm groups whose expected rewards can be larger, smaller, or even in between those of normal arms. To this end, we start by providing a comprehensive definition of such generic outlier arms and outlier arm groups. Then we propose a novel pulling algorithm named GOLD to identify such generic outlier arms. It builds a real-time neighborhood graph based on upper confidence bounds and catches the behavior pattern of outliers from normal arms. We also analyze its performance from various aspects. In the experiments conducted on both synthetic and real-world data sets, the proposed algorithm achieves 98% accuracy while saving 83% exploration cost on average compared with state-of-the-art techniques.",
+  "date": "August 23, 2020",
+  "proceedingsTitle": "Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining",
+  "conferenceName": "",
+  "place": "New York, NY, USA",
+  "publisher": "Association for Computing Machinery",
+  "volume": "",
+  "pages": "913\u2013923",
+  "series": "KDD '20",
+  "language": "",
+  "DOI": "10.1145/3394486.3403134",
+  "ISBN": "978-1-4503-7998-4",
+  "shortTitle": "",
+  "url": "https://doi.org/10.1145/3394486.3403134",
+  "accessDate": "2020-08-21",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "ACM Digital Library",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [
+    {
+      "tag": "anomaly detection",
+      "type": 1
+    },
+    {
+      "tag": "bandit algorithms",
+      "type": 1
+    },
+    {
+      "tag": "multi-armed bandit",
+      "type": 1
+    },
+    {
+      "tag": "outlier detection",
+      "type": 1
+    }
+  ],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2020-08-21T09:35:15Z",
+  "dateModified": "2020-08-21T09:35:15Z"
+}

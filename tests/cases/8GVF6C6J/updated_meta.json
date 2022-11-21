@@ -1,0 +1,56 @@
+{
+  "key": "8GVF6C6J",
+  "version": 3280,
+  "itemType": "conferencePaper",
+  "title": "State of the Art on Microservices Autoscaling: An Overview",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Jo\u00e3o Paulo K. S.",
+      "lastName": "Nunes"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Thiago",
+      "lastName": "Bianchi"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Anderson Y.",
+      "lastName": "Iwasaki"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Elisa Yumi",
+      "lastName": "Nakagawa"
+    }
+  ],
+  "abstractNote": "The adoption of microservices architecture has taken on great proportions due to its bene\ufb01ts and popularization of containers driven tools, such as Kubernetes and Docker. Besides, the development of microservice-based applications is a complex task, specially because they can be composed of multiple heterogeneous parts. In particular, one of the main challenges is how to conduct the microservices autoscaling (i.e., adding or removing resources on demand), while still avoiding resource waste, such as CPU and memory. This paper presents the state of the art of approaches to solve the problem of microservices autoscaling, the main characteristics to be considered as well as the important future directions that need to be still investigated.",
+  "volume": "",
+  "pages": "9",
+  "date": "",
+  "series": "SEMISH 2021",
+  "language": "en",
+  "DOI": "10.5753/semish.2021.15804",
+  "shortTitle": "",
+  "url": "http://dx.doi.org/10.5753/semish.2021.15804",
+  "accessDate": "",
+  "archive": "",
+  "archiveLocation": "",
+  "libraryCatalog": "Zotero",
+  "callNumber": "",
+  "rights": "",
+  "extra": "",
+  "tags": [],
+  "collections": [
+    "FYWZE8KC"
+  ],
+  "relations": {},
+  "dateAdded": "2021-07-05T02:04:29Z",
+  "dateModified": "2022-11-21T05:19:50Z",
+  "ISBN": "",
+  "place": "Brasil",
+  "proceedingsTitle": "Anais do XLVIII Semin\u00e1rio Integrado de Software e Hardware (SEMISH 2021)",
+  "conferenceName": "Semin\u00e1rio Integrado de Software e Hardware",
+  "publisher": "Sociedade Brasileira de Computa\u00e7\u00e3o - SBC"
+}

@@ -26,7 +26,12 @@ def load_cases() -> List[Tuple[Dict, Optional[Dict]]]:
     "original_meta,updated_meta", load_cases()
 )
 def test_update_zotero_meta(original_meta, updated_meta):
+    print(original_meta["key"])
     new_meta = update_zotero_meta_for_item(original_meta)
+    if "dateModified" in new_meta:
+        del new_meta["dateModified"]
+    if "dateModified" in updated_meta:
+        del updated_meta["dateModified"]
     if updated_meta is not None:
         assert new_meta is not None and new_meta == updated_meta
     else:
