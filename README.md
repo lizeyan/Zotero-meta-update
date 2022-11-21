@@ -30,5 +30,7 @@ Though Zotero is a great tool for managing references, the metadata of your libr
     - [x] Conference paper
     - [x] Journal articles
     - [ ] Arxiv papers (informal publications) (They are quite common for me).
+    - [ ] Book/Book chapters
 - [ ] Manually select the correct item from the search results when there are multiple matches (currently I raise an exception in such cases).
 - [ ] There could be errors in the databases, e.g., https://api.crossref.org/works/10.1145/2465529.2465753 (conference name)
+- [x] Allow to lock an item (e.g., in case it is manually maintained)

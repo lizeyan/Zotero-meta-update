@@ -39,6 +39,7 @@ def download_items(output_dir: Path = Path("./output")) -> int:
             params={
                 "format": "json",
                 "start": f"{count}",
+                "limit": "100",
             }
         ).json()
         logger.info(f"{len(items)} fetched")

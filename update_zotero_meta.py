@@ -68,8 +68,13 @@ def check_difference(a, b) -> bool:
     "--write", "-w", is_flag=True, default=False,
     help="If true, we write the updated metadata files to Zotero server."
 )
+@option(
+    "--skip-confirmation", is_flag=True, default=False,
+    help="If true, each item would be write to server (only when --write) without confirmation"
+)
 def main(
-        output_dir: Path, min_update_interval_days: int, skip_download: bool, write: bool, skip_online_update: bool
+        output_dir: Path, min_update_interval_days: int, skip_download: bool, write: bool,
+        skip_online_update: bool, skip_confirmation: bool,
 ):
     logger.add(output_dir / "log.txt", rotation="1 week", retention="1 month")
     logger.info(f"=========================START===============================")
@@ -82,7 +87,7 @@ def main(
         logger.info("Skip download original metadata files from Zotero server.")
 
     paths = output_dir.glob("*")
-    # paths = [output_dir / 'IS3RVGPA']  # DEBUG
+    # paths = [output_dir / '9ZH8QUHM']  # DEBUG
     failed_items = []
 
     for item_path in paths:
@@ -106,6 +111,10 @@ def main(
                 logger.info(f"Skip {item_path.name} since it has been updated recently.")
                 continue
 
+            if 'lock' in original_meta.get("extra", ""):
+                logger.info(f"Skip item {original_meta['key']} because it is locked: {original_meta['extra']=}")
+                continue
+
             if original_meta["itemType"] == "attachment":
                 logger.error(f"Skip {item_path.name} since it is an attachment.")
                 continue
@@ -125,7 +134,7 @@ def main(
                     json.dump(new_meta, f, indent=2)
                 with open(item_path / f"updated_meta-{datetime.now().isoformat()}.json", "w+") as f:
                     json.dump(new_meta, f, indent=2)
-                if write and check_difference(original_meta, new_meta):
+                if write and (skip_confirmation or check_difference(original_meta, new_meta)):
                     logger.info("Write to server")
                     write_metadata_to_zotero(original_meta['key'], new_meta)
                 else:
