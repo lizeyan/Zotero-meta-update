@@ -104,6 +104,7 @@ def main(
             logger.info(f"item {original_meta['key']} is modified at {date_modified}")
             if date_modified > dt_threshold:
                 logger.info(f"Skip {item_path.name} since it has been updated recently.")
+                continue
 
             if original_meta["itemType"] == "attachment":
                 logger.error(f"Skip {item_path.name} since it is an attachment.")
