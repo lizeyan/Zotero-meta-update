@@ -78,7 +78,7 @@ def main(
         logger.info("Skip download original metadata files from Zotero server.")
 
     paths = output_dir.glob("*")
-    # paths = [output_dir / 'MAKVPUR2']  # DEBUG
+    # paths = [output_dir / 'D2BLJAUK']  # DEBUG
     failed_items = []
 
     for item_path in paths:

@@ -99,3 +99,13 @@ def test_lookup_8():
     assert are_doi_equal(work.doi, '10.48550/ARXIV.2204.03341')
     assert work.repository == 'arXiv'
     assert work.archive_ID == 'arXiv:2204.03341'
+
+
+def test_lookup_9():
+    work = lookup(
+        title='Threshold compression for 3G scalable monitoring'
+    )
+    print(work)
+    assert isinstance(work, ConferencePaper)
+    assert work.authors == ['Lee, Suk-Bok', 'Dan Pei', 'Hajiaghayi, MohammadTaghi', 'Pefkianakis, Ioannis', 'Songwu Lu', 'He Yan', 'Zihui Ge', 'Yates, Jennifer', 'Kosseifi, Mario']
+    assert work.series == "INFOCOM 2012"

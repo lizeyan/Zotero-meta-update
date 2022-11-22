@@ -92,7 +92,14 @@ class Work:
             if "subtitle" in data and len(data["subtitle"]) > 0 and data['subtitle'][0] != "":
                 self.title += ": " + data['subtitle'][0]
         if "author" in data:
-            self.authors = [author["family"] + ", " + author["given"] for author in data["author"]]
+            self.authors = [
+                (
+                    author["family"] + ", " + author["given"]
+                    if 'given' in author and 'family' in author
+                    else (author["family"] if 'family' in author else author['given'])
+                )
+                for author in data["author"]
+            ]
         if "published-print" in data:
             self.date = '-'.join(map(str, data["published-print"]["date-parts"][0]))
         if "URL" in data:
@@ -163,7 +170,7 @@ class Work:
             # If the length of two lists are equal, we will update each different item.
             for idx, (author_info, new_author_info) in enumerate(zip(data["creators"], new_author_infos)):
                 if author_info != new_author_info:
-                    if 'name' in new_author_info and "firstName" in author_info:
+                    if 'name' in new_author_info and author_info.get('firstName', "") != "" and author_info.get('lastName', "") != "":
                         logger.info(
                             "Since the author name is not in the format of 'last name, first name', "
                             f"we do not update the author info: {new_author_info=} {author_info=}"
