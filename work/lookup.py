@@ -23,7 +23,7 @@ def create_or_update_work_by_crossref_item(crossref_item: dict, orig_work: Optio
         logger.error(
             f"Unrecognized type {crossref_item['type']} for {crossref_item['DOI']=} {crossref_item['title']=}"
         )
-        return None
+        return orig_work
 
 
 def create_or_update_work_by_DBLP_item(DBLP_item: dict, orig_work: Optional[Work] = None) -> Optional[Work]:
@@ -40,7 +40,7 @@ def create_or_update_work_by_DBLP_item(DBLP_item: dict, orig_work: Optional[Work
             f"Unrecognized type {DBLP_item.get('type', '')} "
             f"for {DBLP_item.get('doi', '')=} {DBLP_item.get('title', 'NaN')=}"
         )
-        return None
+        return orig_work
 
 
 def lookup(
