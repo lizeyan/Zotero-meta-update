@@ -89,6 +89,9 @@ def search_on_DBLP_by_title(
             doi_matched = are_doi_equal(info.get("doi", ""), doi if doi is not None else "NaN")
             if (doi is None and title_matched) or doi_matched:
                 possible_items.append(info)
+            if info.get('venue', "") == 'CoRR' and title_matched:
+                # For arXiv papers, DBLP can miss their DOIs
+                possible_items.append(info)
         if len(possible_items) == 0:
             if first_author is not None and first_author != "":
                 # search with first author

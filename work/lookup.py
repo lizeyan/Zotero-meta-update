@@ -6,6 +6,7 @@ from work.conference_paper import ConferencePaper
 from work.journal_paper import JournalPaper
 from work.search_item import search_on_DBLP_by_title, search_on_crossref_by_title, search_on_crossref_by_doi
 from work.work import Work
+from work.preprint import Preprint
 
 __all__ = ['lookup']
 
@@ -33,6 +34,10 @@ def create_or_update_work_by_DBLP_item(DBLP_item: dict, orig_work: Optional[Work
         return work
     elif DBLP_item["type"] == "Journal Articles":
         work = JournalPaper().copy_from(orig_work)
+        work.update_with_DBLP_item_data(DBLP_item)
+        return work
+    elif DBLP_item["type"] == "Informal Publications":
+        work = Preprint().copy_from(orig_work)
         work.update_with_DBLP_item_data(DBLP_item)
         return work
     else:
@@ -63,7 +68,7 @@ def lookup(
     if doi is not None:
         DBLP_item = search_on_DBLP_by_title(title, doi=doi, first_author=extra_info.get("first_author", None))
         if DBLP_item is not None:
-            logger.info(f"found item {DBLP_item['doi']=} on DBLP for {doi=}")
+            logger.info(f"found item {DBLP_item.get('doi', '')=} on DBLP for {doi=}")
             work = create_or_update_work_by_DBLP_item(DBLP_item, orig_work=work)  # 100% matched since DOI matched
         crossref_item = search_on_crossref_by_doi(doi)
         if crossref_item is not None:

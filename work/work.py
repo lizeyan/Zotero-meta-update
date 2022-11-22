@@ -119,14 +119,6 @@ class Work:
         if "doi" in data:
             self.doi = data["doi"]
 
-    def update_with_zotero_data(self, data: dict):
-        """
-        Update the work with the data from Zotero
-        :param data: see examples at tests/cases/*/*.json
-        :return:
-        """
-        raise NotImplementedError()
-
     def update_zotero_item_data(self, data: dict) -> Dict:
         """
         Update the given Zotero metadata dictionary with the data from this work
@@ -137,7 +129,11 @@ class Work:
 
         # If DOI mismatched, then the lookup stage is buggy, we should not update the data
         if data.get("DOI", "") != "" and not are_doi_equal(data["DOI"], self.doi):
-            raise RuntimeError(f"DOI mismatch: {data['DOI']=} {self.doi=} {data['key']=}. Skip update metadata")
+            if getattr(self, "library_catalog", "") == "arXiv.org" or getattr(self, "repository", "") == 'arXiv':
+                # If the item is from arXiv, then DBLP could miss its DOI
+                pass
+            else:
+                raise RuntimeError(f"DOI mismatch: {data['DOI']=} {self.doi=} {data['key']=}. Skip update metadata")
         # If title mismatched, there could be a problem
         if data.get("DOI", "") == "" and not are_title_almost_equal(data["title"], self.title):
             logger.warning(f"Title mismatch: {data['title']=} {self.title=} {data['key']=}.")

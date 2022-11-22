@@ -1,3 +1,4 @@
+from typing import Optional
 from urllib.parse import urlparse
 
 
@@ -14,5 +15,10 @@ def are_title_almost_equal(title_a: str, title_b: str) -> bool:
     return tuple(filter(is_valid_char, title_a.lower())) == tuple(filter(is_valid_char, title_b.lower()))
 
 
-def are_doi_equal(doi_a: str, doi_b: str) -> bool:
-    return urlparse(doi_a).path.lstrip("/").lower() == urlparse(doi_b).path.lstrip("/").lower()
+def are_doi_equal(doi_a: Optional[str], doi_b: Optional[str]) -> bool:
+    if doi_a is None and doi_b is None:
+        return True
+    elif doi_a is None or doi_b is None:
+        return False
+    else:
+        return urlparse(doi_a).path.lstrip("/").lower() == urlparse(doi_b).path.lstrip("/").lower()
