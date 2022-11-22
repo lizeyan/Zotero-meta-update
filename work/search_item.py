@@ -10,7 +10,6 @@ from requests.adapters import HTTPAdapter, Retry
 
 from work.utils import are_title_almost_equal, are_doi_equal
 
-
 _session = requests.Session()
 _adapter = HTTPAdapter(
     max_retries=Retry(
@@ -94,7 +93,7 @@ def search_on_DBLP_by_title(
                 possible_items.append(info)
         if len(possible_items) == 0:
             if first_author is not None and first_author != "":
-                # search with first author
+                # If nothing found with only title, search with first author
                 logger.debug(f"search_on_DBLP_by_title {title=} {doi=} with {first_author=}")
                 data = _session.get(
                     f"https://dblp.org/search/publ/api", params={
@@ -109,22 +108,24 @@ def search_on_DBLP_by_title(
                     doi_matched = are_doi_equal(info.get("doi", ""), doi if doi is not None else "NaN")
                     if (doi is None and title_matched) or doi_matched:
                         possible_items.append(info)
-                if len(possible_items) > 0:
-                    return possible_items[0]
-            else:
-                return None
+        if len(possible_items) == 0:
+            return None
         elif len(possible_items) == 1:
             return possible_items[0]
         else:
             formal_possible_items = [_ for _ in possible_items if _['type'] != "Informal Publications"]
-            if len(formal_possible_items) == 1:
+            if len(formal_possible_items) == 1:  # If there is only one formal publication, use it
                 return formal_possible_items[0]
             else:
-                logger.error(
-                    f"I do not know how to select the possible items for {title=}:"
-                    f" \n{json.dumps(possible_items, indent=2)}"
-                )
-                return None
+                # if all has the same doi, use the first item
+                if all([are_doi_equal(_["doi"], possible_items[0]["doi"]) for _ in possible_items]):
+                    return possible_items[0]
+                else:
+                    logger.error(
+                        f"I do not know how to select the possible items for {title=}:"
+                        f" \n{json.dumps(possible_items, indent=2)}"
+                    )
+                    return None
     except Exception as e:
         logger.error(f"search_on_DBLP_by_title {title} failed: {e}")
         return None

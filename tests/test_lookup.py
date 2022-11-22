@@ -88,3 +88,14 @@ def test_lookup_7():
     assert work.authors == ['Riccardo Pinciroli', 'Lishan Yang', 'Jacob Alter', 'Evgenia Smirni']
     assert work.repository == "arXiv"
     assert work.archive_ID == 'arXiv:2012.12373'
+
+
+def test_lookup_8():
+    work = lookup(
+        title='Robust and Explainable Autoencoders for Unsupervised Time Series Outlier Detection—Extended Version'
+    )
+    print(work)
+    assert isinstance(work, Preprint)
+    assert are_doi_equal(work.doi, '10.48550/ARXIV.2204.03341')
+    assert work.repository == 'arXiv'
+    assert work.archive_ID == 'arXiv:2204.03341'
