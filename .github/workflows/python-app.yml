@@ -1,0 +1,51 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+    - name: Test with pytest
+      run: |
+        PYTHONPATH=$(realpath .) pytest --cov=. -n 16 ./tests
+    - name: Coveralls Python
+      # You may pin to the exact commit or the version.
+      # uses: AndreMiras/coveralls-python-action@f5fd5c309b39d01599fb92c72d4f7409ea78aec9
+      uses: AndreMiras/coveralls-python-action@v20201129
+      with:
+        # The `GITHUB_TOKEN` or `COVERALLS_REPO_TOKEN`.
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        # Set to true if you are using parallel jobs, then use `parallel-finished: true` for the last action.
+        parallel: true # optional
+        # Set to true for the last action when using `parallel: true`.
+        parallel-finished: true # optional
+        # The name of a sub-directory in which the coverage files are to be found.
+        base-path: .# optional
+        # A description of the current job used in connection with parallel.
+#         flag-name: # optional
+        # Set to `true` to increase logger verbosity.
+        debug: true # optional
