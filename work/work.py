@@ -92,7 +92,14 @@ class Work:
             if "subtitle" in data and len(data["subtitle"]) > 0 and data['subtitle'][0] != "":
                 self.title += ": " + data['subtitle'][0]
         if "author" in data:
-            self.authors = [author["family"] + ", " + author["given"] for author in data["author"]]
+            self.authors = [
+                (
+                    author["family"] + ", " + author["given"]
+                    if 'given' in author and 'family' in author
+                    else (author["family"] if 'family' in author else author['given'])
+                )
+                for author in data["author"]
+            ]
         if "published-print" in data:
             self.date = '-'.join(map(str, data["published-print"]["date-parts"][0]))
         if "URL" in data:
@@ -119,14 +126,6 @@ class Work:
         if "doi" in data:
             self.doi = data["doi"]
 
-    def update_with_zotero_data(self, data: dict):
-        """
-        Update the work with the data from Zotero
-        :param data: see examples at tests/cases/*/*.json
-        :return:
-        """
-        raise NotImplementedError()
-
     def update_zotero_item_data(self, data: dict) -> Dict:
         """
         Update the given Zotero metadata dictionary with the data from this work
@@ -137,7 +136,11 @@ class Work:
 
         # If DOI mismatched, then the lookup stage is buggy, we should not update the data
         if data.get("DOI", "") != "" and not are_doi_equal(data["DOI"], self.doi):
-            raise RuntimeError(f"DOI mismatch: {data['DOI']=} {self.doi=} {data['key']=}. Skip update metadata")
+            if getattr(self, "library_catalog", "") == "arXiv.org" or getattr(self, "repository", "") == 'arXiv':
+                # If the item is from arXiv, then DBLP could miss its DOI
+                pass
+            else:
+                raise RuntimeError(f"DOI mismatch: {data['DOI']=} {self.doi=} {data['key']=}. Skip update metadata")
         # If title mismatched, there could be a problem
         if data.get("DOI", "") == "" and not are_title_almost_equal(data["title"], self.title):
             logger.warning(f"Title mismatch: {data['title']=} {self.title=} {data['key']=}.")
@@ -167,10 +170,10 @@ class Work:
             # If the length of two lists are equal, we will update each different item.
             for idx, (author_info, new_author_info) in enumerate(zip(data["creators"], new_author_infos)):
                 if author_info != new_author_info:
-                    if 'name' in new_author_info and "firstName" in author_info:
+                    if 'name' in new_author_info and author_info.get('firstName', "") != "" and author_info.get('lastName', "") != "":
                         logger.info(
                             "Since the author name is not in the format of 'last name, first name', "
-                            "we do not update the author info"
+                            f"we do not update the author info: {new_author_info=} {author_info=}"
                         )
                     else:
                         logger.info(f"update creators from {author_info} to {new_author_info} for {data['key']=}")

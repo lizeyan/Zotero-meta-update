@@ -1,0 +1,58 @@
+{
+  "key": "MAKVPUR2",
+  "version": 8033,
+  "itemType": "preprint",
+  "title": "The Life and Death of SSDs and HDDs: Similarities, Differences, and Prediction Models",
+  "creators": [
+    {
+      "creatorType": "author",
+      "firstName": "Riccardo",
+      "lastName": "Pinciroli"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Lishan",
+      "lastName": "Yang"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Jacob",
+      "lastName": "Alter"
+    },
+    {
+      "creatorType": "author",
+      "firstName": "Evgenia",
+      "lastName": "Smirni"
+    }
+  ],
+  "abstractNote": "Data center downtime typically centers around IT equipment failure. Storage devices are the most frequently failing components in data centers. We present a comparative study of hard disk drives (HDDs) and solid state drives (SSDs) that constitute the typical storage in data centers. Using a six-year field data of 100,000 HDDs of different models from the same manufacturer from the BackBlaze dataset and a six-year field data of 30,000 SSDs of three models from a Google data center, we characterize the workload conditions that lead to failures and illustrate that their root causes differ from common expectation but remain difficult to discern. For the case of HDDs we observe that young and old drives do not present many differences in their failures. Instead, failures may be distinguished by discriminating drives based on the time spent for head positioning. For SSDs, we observe high levels of infant mortality and characterize the differences between infant and non-infant failures. We develop several machine learning failure prediction models that are shown to be surprisingly accurate, achieving high recall and low false positive rates. These models are used beyond simple prediction as they aid us to untangle the complex interaction of workload characteristics that lead to failures and identify failure root causes from monitored symptoms.",
+  "genre": "",
+  "repository": "arXiv",
+  "archiveID": "arXiv:2012.12373",
+  "place": "",
+  "date": "2020-12-22",
+  "series": "",
+  "seriesNumber": "",
+  "DOI": "10.48550/arXiv.2012.12373",
+  "citationKey": "",
+  "url": "http://arxiv.org/abs/2012.12373",
+  "accessDate": "2022-11-22T04:33:53Z",
+  "archive": "",
+  "archiveLocation": "",
+  "shortTitle": "The Life and Death of SSDs and HDDs",
+  "language": "",
+  "libraryCatalog": "arXiv.org",
+  "callNumber": "",
+  "rights": "",
+  "extra": "arXiv:2012.12373 [cs]",
+  "tags": [
+    {
+      "tag": "Computer Science - Machine Learning",
+      "type": 1
+    }
+  ],
+  "collections": [],
+  "relations": {},
+  "dateAdded": "2022-11-22T04:33:53Z",
+  "dateModified": "2022-11-22T04:46:22Z"
+}

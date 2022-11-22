@@ -1,4 +1,4 @@
-from work import ConferencePaper, lookup, JournalPaper, are_doi_equal
+from work import ConferencePaper, lookup, JournalPaper, are_doi_equal, Preprint
 
 
 def test_lookup_1():
@@ -76,3 +76,36 @@ def test_lookup_6():
     assert work.issue == "3"
     assert work.pages == "1-39"
     print(work)
+
+
+def test_lookup_7():
+    work = lookup(
+        title="The Life and Death of SSDs and HDDs: Similarities, Differences, and Prediction Models",
+        doi="10.48550/arXiv.2012.12373"
+    )
+    print(work)
+    assert isinstance(work, Preprint)
+    assert work.authors == ['Riccardo Pinciroli', 'Lishan Yang', 'Jacob Alter', 'Evgenia Smirni']
+    assert work.repository == "arXiv"
+    assert work.archive_ID == 'arXiv:2012.12373'
+
+
+def test_lookup_8():
+    work = lookup(
+        title='Robust and Explainable Autoencoders for Unsupervised Time Series Outlier Detection—Extended Version'
+    )
+    print(work)
+    assert isinstance(work, Preprint)
+    assert are_doi_equal(work.doi, '10.48550/ARXIV.2204.03341')
+    assert work.repository == 'arXiv'
+    assert work.archive_ID == 'arXiv:2204.03341'
+
+
+def test_lookup_9():
+    work = lookup(
+        title='Threshold compression for 3G scalable monitoring'
+    )
+    print(work)
+    assert isinstance(work, ConferencePaper)
+    assert work.authors == ['Lee, Suk-Bok', 'Dan Pei', 'Hajiaghayi, MohammadTaghi', 'Pefkianakis, Ioannis', 'Songwu Lu', 'He Yan', 'Zihui Ge', 'Yates, Jennifer', 'Kosseifi, Mario']
+    assert work.series == "INFOCOM 2012"

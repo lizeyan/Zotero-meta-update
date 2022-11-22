@@ -1,13 +1,18 @@
 # Zotero-meta-update
-* [Examples](#Usage)
+* [Features](#Features)
+* [Examples](#Examples)
 * [Usage](#Usage)
-* [Roadmap](#Usage)
+* [Development](#Development)
+* [Roadmap](#Roadmap)
 
 [![Coverage Status](https://coveralls.io/repos/github/lizeyan/Zotero-meta-update/badge.svg?branch=dev)](https://coveralls.io/github/lizeyan/Zotero-meta-update?branch=dev)
 
 Though Zotero is a great tool for managing references, the metadata of your library items can be wrong for different reasons:
 1. You got the PDF file before it is formally published (e.g., from the authors' personal site or Arxiv), and the metadata is not updated yet.
 2. I found Zotero often cannot retrieve the correct metadata for some papers, especially for those published in conference proceedings.
+
+This script automatically downloads all your items with Zotero HTTP API, matches each item on databases including CrossRef, DBLP, corrects the fields of the item metadata, and finally writes back the item metadata to server.
+
 ## Examples
 ![example1](figs/example1.png)
 ![example1](figs/example2.png)
@@ -19,6 +24,13 @@ Though Zotero is a great tool for managing references, the metadata of your libr
    python3 update_zotero_meta.py --help  # show helps
    python3 update_zotero_meta.py  # run
    ```
+   
+
+## Development
+### Run Tests
+```bash
+ PYTHONPATH=$(realpath .) pytest --cov=. -n 16 ./tests
+```
 
 
 ## Roadmap
@@ -31,6 +43,6 @@ Though Zotero is a great tool for managing references, the metadata of your libr
     - [x] Journal articles
     - [ ] Arxiv papers (informal publications) (They are quite common for me).
     - [ ] Book/Book chapters
-- [ ] Manually select the correct item from the search results when there are multiple matches (currently I raise an exception in such cases).
+- [ ] Manually select the correct item from the search results when there are multiple matches (currently I raise an exception in such cases). I think it should be better to develop a GUI plugin of Zotero, in which users can manually select the correct match of an item.
 - [ ] There could be errors in the databases, e.g., https://api.crossref.org/works/10.1145/2465529.2465753 (conference name)
 - [x] Allow to lock an item (e.g., in case it is manually maintained)
