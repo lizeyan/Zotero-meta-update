@@ -1,3 +1,5 @@
 pytest
 pytest-xdist
+pytest-cov
 coverage
+coveralls
