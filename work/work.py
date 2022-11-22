@@ -118,7 +118,10 @@ class Work:
         if "title" in data:
             self.title = data["title"]
         if "authors" in data:
-            self.authors = [author["text"] for author in data["authors"]["author"]]
+            if isinstance(data["authors"]["author"], list):
+                self.authors = [author["text"] for author in data["authors"]["author"]]
+            else:
+                self.authors = [data["authors"]["author"]['text']]
         if "year" in data:
             self.date = data["year"]
         if "url" in data:

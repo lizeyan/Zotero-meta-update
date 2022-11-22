@@ -117,8 +117,17 @@ def search_on_DBLP_by_title(
             if len(formal_possible_items) == 1:  # If there is only one formal publication, use it
                 return formal_possible_items[0]
             else:
+                # if all has the same key, use the first item
+                if all([
+                    are_doi_equal(_.get("key", ""), possible_items[0].get("key", "notFound"))
+                    for _ in possible_items
+                ]):
+                    return possible_items[0]
                 # if all has the same doi, use the first item
-                if all([are_doi_equal(_["doi"], possible_items[0]["doi"]) for _ in possible_items]):
+                if all([
+                    are_doi_equal(_.get("doi", ""), possible_items[0].get("doi", "notFound"))
+                    for _ in possible_items
+                ]):
                     return possible_items[0]
                 else:
                     logger.error(

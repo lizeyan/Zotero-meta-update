@@ -107,5 +107,22 @@ def test_lookup_9():
     )
     print(work)
     assert isinstance(work, ConferencePaper)
-    assert work.authors == ['Lee, Suk-Bok', 'Dan Pei', 'Hajiaghayi, MohammadTaghi', 'Pefkianakis, Ioannis', 'Songwu Lu', 'He Yan', 'Zihui Ge', 'Yates, Jennifer', 'Kosseifi, Mario']
+    assert work.authors == ['Lee, Suk-Bok', 'Dan Pei', 'Hajiaghayi, MohammadTaghi', 'Pefkianakis, Ioannis', 'Songwu Lu',
+                            'He Yan', 'Zihui Ge', 'Yates, Jennifer', 'Kosseifi, Mario']
     assert work.series == "INFOCOM 2012"
+
+
+def test_lookup_10():
+    work = lookup(title="Software Engineering Meets Deep Learning: A Literature Review")
+    print(work)
+    assert isinstance(work, Preprint)
+    assert work.archive_ID == 'arXiv:1909.11436'
+    assert work.authors == ['Fabio Ferreira', 'Luciana Lourdes Silva', 'Marco Túlio Valente']
+
+
+def test_lookup_11():
+    work = lookup(title="Topic-sensitive PageRank: a context-sensitive ranking algorithm for Web search")
+    print(work)
+    assert isinstance(work, JournalPaper)
+    assert work.authors == ['Haveliwala, T.H.']
+    assert work.doi == '10.1109/tkde.2003.1208999'
