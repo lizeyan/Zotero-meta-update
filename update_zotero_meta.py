@@ -86,7 +86,7 @@ def main(
             continue
         handler_id = logger.add(item_path / "log.txt", rotation="1 MB", enqueue=True)
         try:
-            logger.info(f"=========================START===============================")
+            logger.info(f"========================================================")
             logger.info(f"Processing {item_path}")
             try:
                 with open(item_path / "original.json", "r", encoding="utf-8") as f:
@@ -135,7 +135,6 @@ def main(
             logger.exception(f"Exception encountered when processing {item_path=}", exception=e)
             failed_items.append(item_path)
         finally:
-            logger.info(f"============================END=====================================")
             logger.remove(handler_id)
     logger.info(f"failed_items: {failed_items}")
     logger.info(f"=========================START===============================")
