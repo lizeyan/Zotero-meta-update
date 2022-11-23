@@ -40,7 +40,7 @@ def check_difference(a, b, skip_confirmation: bool) -> bool:
 
 @command("Zotero Metadata Update")
 @option(
-    "--output-dir", "-o", type=Path, default=Path("./output"),
+    "--output-dir", "-o", type=Path, default=Path("./output") / f'run-{datetime.now().isoformat()}',
     help="The downloaded original metadata files and the updated ones will be saved to this directory."
 )
 @option(
@@ -67,13 +67,14 @@ def main(
         output_dir: Path, min_update_interval_days: int, skip_download: bool, write: bool,
         skip_online_update: bool, skip_confirmation: bool,
 ):
+    output_dir.mkdir(exist_ok=True, parents=True)
     logger.add(output_dir / "log.txt", rotation="1 week", retention="1 month")
     logger.info(f"=========================START===============================")
     dt_threshold = datetime.now(timezone("Asia/Shanghai")) - timedelta(days=min_update_interval_days)
     logger.info(f"{dt_threshold=}")
     if not skip_download:
         logger.info("Downloading original metadata files from Zotero server...")
-        download_items()
+        download_items(output_dir=output_dir)
     else:
         logger.info("Skip download original metadata files from Zotero server.")
 
@@ -120,8 +121,6 @@ def main(
                 new_meta = get_updated_zotero_meta_for_item(original_meta)
             if new_meta is not None:
                 with open(item_path / "updated_meta.json", "w+") as f:
-                    json.dump(new_meta, f, indent=2)
-                with open(item_path / f"updated_meta-{datetime.now().isoformat()}.json", "w+") as f:
                     json.dump(new_meta, f, indent=2)
                 confirmation = check_difference(original_meta, new_meta, skip_confirmation=skip_confirmation)
                 if write and confirmation:

@@ -67,8 +67,6 @@ def download_items(output_dir: Path = Path("./output"), *, limit: int = 100, n_w
             item_output_dir.mkdir(parents=True, exist_ok=True)
             with open(item_output_dir / "original.json", 'w') as f:
                 json.dump(item, f, indent=2)
-            with open(item_output_dir / f"original-{dt.isoformat()}.json", 'w+') as f:
-                json.dump(item, f, indent=2)
 
     first_response: Response = query(start=0)
     total_counts: int = int(first_response.headers.get("Total-Results"))
