@@ -126,3 +126,11 @@ def test_lookup_11():
     assert isinstance(work, JournalPaper)
     assert work.authors == ['Haveliwala, T.H.']
     assert work.doi == '10.1109/tkde.2003.1208999'
+
+
+def test_lookup_12():
+    work = lookup(title="SEEDB: Efﬁcient Data-Driven Visualization Recommendations to Support Visual Analytics")
+    print(work)
+    assert isinstance(work, JournalPaper)
+    assert work.publication == 'Proc. VLDB Endow.'
+    assert work.doi == '10.14778/2831360.2831371'

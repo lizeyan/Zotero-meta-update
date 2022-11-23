@@ -64,6 +64,9 @@ def lookup(
     if title is None and doi is None:
         logger.error("title and doi are both None")
         return None
+    if title is not None:
+        # Sometimes the extracted title would contain non-ascii characters, which would cause the search to fail
+        title = title.replace("ﬁ", "fi")
     work = None
     if doi is not None:
         DBLP_item = search_on_DBLP_by_title(title, doi=doi, first_author=extra_info.get("first_author", None))
