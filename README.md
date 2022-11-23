@@ -5,7 +5,10 @@
 * [Development](#Development)
 * [Roadmap](#Roadmap)
 
+
+[![CI tests](https://github.com/lizeyan/Zotero-meta-update/actions/workflows/ci-tests.yml/badge.svg?branch=dev)](https://github.com/lizeyan/Zotero-meta-update/actions/workflows/ci-tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/lizeyan/Zotero-meta-update/badge.svg?branch=dev)](https://coveralls.io/github/lizeyan/Zotero-meta-update?branch=dev)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/Zotero-meta-update.svg)](https://pypi.python.org/pypi/Zotero-meta-update/)
 
 Though Zotero is a great tool for managing references, the metadata of your library items can be wrong for different reasons:
 1. You got the PDF file before it is formally published (e.g., from the authors' personal site or Arxiv), and the metadata is not updated yet.
@@ -20,11 +23,14 @@ Though Zotero is a great tool for managing references, the metadata of your libr
 ![example1](figs/example2.png)
 
 ## Usage
-1. Write your Zotero user ID to a file named `ZOTERO_USER_ID` (get it from https://www.zotero.org/settings/keys)
-2. Write your Zotero API key to a file named `ZOTERO_API_KEY` (get it from https://www.zotero.org/settings/keys)
-3. ``` bash
-   python3 update_zotero_meta.py --help  # show helps
-   python3 update_zotero_meta.py  # run
+1. `pip install Zotero-meta-update`
+2. `export ZOTERO_USER_ID={your Zotero user ID}` (get it from https://www.zotero.org/settings/keys) or save it in a file named `ZOTERO_USER_ID` in the working directory.
+3. `export ZOTERO_API_KEY={your Zotero API key}` (get it from https://www.zotero.org/settings/keys) or save it in a file named `ZOTERO_API_KEY` in the working directory.
+4. ``` bash
+   update_zotero_meta --help  # show helps
+   update_zotero_meta # run without writting to server
+   update_zotero_meta -w  # run with manual update confimration for each changed item
+   update_zotero_meta -w --skip-confirmation # changed items are automatically written back to server
    ```
    
 
@@ -32,6 +38,14 @@ Though Zotero is a great tool for managing references, the metadata of your libr
 ### Run Tests
 ```bash
  PYTHONPATH=$(realpath .) pytest --cov=. -n 16 ./tests
+ coveralls
+```
+
+### Build and Upload to PyPi
+```bash
+python setup.py bdist_wheel 
+python3 -m twine upload dist/* --skip-exist --verbose
+
 ```
 
 

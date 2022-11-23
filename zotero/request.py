@@ -2,7 +2,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from functools import lru_cache
-
+import os
 __all__ = ['download_items', 'write_metadata_to_zotero']
 
 from pathlib import Path
@@ -25,18 +25,25 @@ _session.mount("https://", _adapter)
 
 @lru_cache(maxsize=None)
 def zotero_headers() -> dict:
-    with open("ZOTERO_API_KEY", 'r') as f:
-        return {
-            "Zotero-API-Key": f.read(),
-            "Zotero-API-Version": "3",
-            "Content-Type": "application/json",
-        }
+    if "ZOTERO_API_KEY" in os.environ:
+        api_key = os.environ['ZOTERO_API_KEY']
+    else:
+        with open("ZOTERO_API_KEY", 'r') as f:
+            api_key = f.read()
+    return {
+        "Zotero-API-Key": api_key,
+        "Zotero-API-Version": "3",
+        "Content-Type": "application/json",
+    }
 
 
 @lru_cache(maxsize=None)
 def zotero_user_id() -> str:
-    with open("ZOTERO_USER_ID", 'r') as f:
-        return f.read()
+    if "ZOTERO_USER_ID" in os.environ:
+        return os.environ['ZOTERO_USER_ID']
+    else:
+        with open("ZOTERO_USER_ID", 'r') as f:
+            return f.read()
 
 
 def download_items(output_dir: Path = Path("./output"), *, limit: int = 100, n_workers: int = 16) -> int:

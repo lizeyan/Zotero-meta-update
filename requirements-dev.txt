@@ -3,3 +3,6 @@ pytest-xdist
 pytest-cov
 coverage
 coveralls
+wheel
+setuptools
+twine
