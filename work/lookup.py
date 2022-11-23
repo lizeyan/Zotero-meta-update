@@ -53,6 +53,12 @@ def lookup(
 ) -> Optional[Work]:
     """
     lookup the current work on databases and fill or correct the fields
+    We first match items with DOI, then with title
+    If there are no matched items, we will try to search with first author name as well.
+    If there are multiple matched items,
+    - we will first try to use the formal publication (if there is only one)
+    - if all of them have the same DOI or DBLP key, we use the first one.
+    - finally we use the item that have the same item type with the original meta (if there is only one)
     :return:
     """
     if extra_info is None:
@@ -69,22 +75,35 @@ def lookup(
         title = title.replace("ﬁ", "fi")
     work = None
     if doi is not None:
-        DBLP_item = search_on_DBLP_by_title(title, doi=doi, first_author=extra_info.get("first_author", None))
+        DBLP_item = search_on_DBLP_by_title(
+            title, doi=doi,
+            first_author=extra_info.get("first_author", None),
+            item_type=extra_info.get("item_type", None),
+        )
         if DBLP_item is not None:
             logger.info(f"found item {DBLP_item.get('doi', '')=} on DBLP for {doi=}")
             work = create_or_update_work_by_DBLP_item(DBLP_item, orig_work=work)  # 100% matched since DOI matched
-        crossref_item = search_on_crossref_by_doi(doi)
+        crossref_item = search_on_crossref_by_doi(
+            doi,
+        )
         if crossref_item is not None:
             logger.info(f"found item {crossref_item['DOI']=} on crossref for {doi=}")
             work = create_or_update_work_by_crossref_item(crossref_item, orig_work=work)  # 100% matched since DOI matched
     else:
-        DBLP_item = search_on_DBLP_by_title(title, first_author=extra_info.get("first_author", None))
+        DBLP_item = search_on_DBLP_by_title(
+            title,
+            first_author=extra_info.get("first_author", None),
+            item_type=extra_info.get("item_type", None),
+        )
         if DBLP_item is not None:
             logger.info(
                 f"found item {DBLP_item['title']=} {DBLP_item.get('doi', '')=} on DBLP for {title=}"
             )
             work = create_or_update_work_by_DBLP_item(DBLP_item, orig_work=work)
-        crossref_item = search_on_crossref_by_title(title)
+        crossref_item = search_on_crossref_by_title(
+            title,
+            item_type=extra_info.get("item_type", None),
+        )
         if crossref_item is not None:
             logger.info(
                 f"found item {crossref_item['title']=} {crossref_item.get('DOI', '')=} on crossref for {title=}"
