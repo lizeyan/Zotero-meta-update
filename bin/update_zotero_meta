@@ -137,7 +137,7 @@ def main(
         finally:
             logger.remove(handler_id)
     logger.info(f"failed_items: {failed_items}")
-    logger.info(f"=========================START===============================")
+    logger.info(f"=========================END===============================")
 
 
 if __name__ == '__main__':
