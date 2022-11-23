@@ -32,8 +32,15 @@ def search_on_crossref_by_doi(doi: str) -> Optional[dict]:
 
 
 @lru_cache(maxsize=None)
-def search_on_crossref_by_title(title: str) -> Optional[dict]:
+def search_on_crossref_by_title(title: str, item_type: Optional[str] = None) -> Optional[dict]:
+    """
+    This function is called only when DOI is missing, so DOI is not a parameter here.
+    :param title:
+    :param item_type:
+    :return:
+    """
     logger.debug(f"search_on_crossref_by_title {title=}")
+    item_type = translate_Zotero_item_type_to_CrossRef(item_type)
     try:
         data = _session.get(
             f"https://api.crossref.org/works", params={
@@ -53,6 +60,14 @@ def search_on_crossref_by_title(title: str) -> Optional[dict]:
         elif len(possible_items) == 1:
             return possible_items[0]
         else:
+            if item_type is not None:
+                item_type_matched_items = [_ for _ in possible_items if _["type"] == item_type]
+                if len(item_type_matched_items) == 1:
+                    logger.info(
+                        f"The item type is matched, use it. {item_type=}. "
+                        f"Item types of all items: {[_.get('type', '') for _ in possible_items]}."
+                    )
+                    return item_type_matched_items[0]
             logger.error(
                 f"I do not know how to select the possible items for {title=}:"
                 f" \n{json.dumps(possible_items, indent=2)}"
@@ -65,15 +80,18 @@ def search_on_crossref_by_title(title: str) -> Optional[dict]:
 
 @lru_cache(maxsize=None)
 def search_on_DBLP_by_title(
-        title: str, *, doi: Optional[str] = None, first_author: Optional[str] = None
+        title: str, *, doi: Optional[str] = None, first_author: Optional[str] = None,
+        item_type: Optional[str] = None,
 ) -> Optional[dict]:
     """
     :param title:
     :param doi: Use DOI to determine which is the correct search result
     :param first_author: Use first author as additional search terms when title is not enough
+    :param item_type: Use item type to select the correct search result
     :return:
     """
     logger.debug(f"search_on_DBLP_by_title {title=} {doi=}")
+    item_type = translate_Zotero_item_type_to_DBLP(item_type)
     try:
         data = _session.get(
             f"https://dblp.org/search/publ/api", params={
@@ -115,17 +133,43 @@ def search_on_DBLP_by_title(
         else:
             formal_possible_items = [_ for _ in possible_items if _['type'] != "Informal Publications"]
             if len(formal_possible_items) == 1:  # If there is only one formal publication, use it
+                logger.info(
+                    "There is only one formal publication, use it."
+                    f"\n\tThe DOI of other items: {[_.get('doi', '') for _ in possible_items[1:]]}."
+                    f"\n\tThe key of other items: {[_.get('key', '') for _ in possible_items[1:]]}."
+                )
                 return formal_possible_items[0]
-            else:
-                # if all has the same doi, use the first item
-                if all([are_doi_equal(_["doi"], possible_items[0]["doi"]) for _ in possible_items]):
-                    return possible_items[0]
-                else:
-                    logger.error(
-                        f"I do not know how to select the possible items for {title=}:"
-                        f" \n{json.dumps(possible_items, indent=2)}"
+            # if all has the same key, use the first item
+            if all([
+                are_doi_equal(_.get("key", ""), possible_items[0].get("key", "notFound"))
+                for _ in possible_items
+            ]):
+                logger.info(
+                    f"The keys are all the same, use the first item."
+                )
+                return possible_items[0]
+            # if all has the same doi, use the first item
+            if all([
+                are_doi_equal(_.get("doi", ""), possible_items[0].get("doi", "notFound"))
+                for _ in possible_items
+            ]):
+                logger.info(
+                    f"The DOIs are all the same, use the first item."
+                )
+                return possible_items[0]
+            if item_type is not None:
+                item_type_matched_items = [_ for _ in possible_items if _["type"] == item_type]
+                if len(item_type_matched_items) == 1:
+                    logger.info(
+                        f"The item type is matched, use it. {item_type=}. "
+                        f"Item types of all items: {[_.get('type', '') for _ in possible_items]}."
                     )
-                    return None
+                    return item_type_matched_items[0]
+            logger.error(
+                f"I do not know how to select the possible items for {title=}:"
+                f" \n{json.dumps(possible_items, indent=2)}"
+            )
+            return None
     except Exception as e:
         logger.error(f"search_on_DBLP_by_title {title} failed: {e}")
         return None
@@ -169,3 +213,29 @@ def search_journal_by_openAlex(title: str):
     except Exception as e:
         logger.error(f"Get journal info failed: {e}")
     return None
+
+
+def translate_Zotero_item_type_to_DBLP(item_type: Optional[str]) -> Optional[str]:
+    if item_type is None:
+        return None
+    if item_type.lower() == 'preprint'.lower():
+        return None
+    elif item_type.lower() == 'conferencePaper'.lower():
+        return "Conference and Workshop Papers"
+    elif item_type.lower() == 'journalArticle'.lower():
+        return "Journal Articles"
+    else:
+        return None
+
+
+def translate_Zotero_item_type_to_CrossRef(item_type: Optional[str]) -> Optional[str]:
+    if item_type is None:
+        return None
+    if item_type.lower() == 'preprint'.lower():
+        return None
+    elif item_type.lower() == 'conferencePaper'.lower():
+        return "proceedings-article"
+    elif item_type.lower() == 'journalArticle'.lower():
+        return "journal-article"
+    else:
+        return None

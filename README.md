@@ -11,7 +11,9 @@ Though Zotero is a great tool for managing references, the metadata of your libr
 1. You got the PDF file before it is formally published (e.g., from the authors' personal site or Arxiv), and the metadata is not updated yet.
 2. I found Zotero often cannot retrieve the correct metadata for some papers, especially for those published in conference proceedings.
 
-This script automatically downloads all your items with Zotero HTTP API, matches each item on databases including CrossRef, DBLP, corrects the fields of the item metadata, and finally writes back the item metadata to server.
+- This script automatically downloads all your items with Zotero HTTP API, matches each item on databases including CrossRef, DBLP, corrects the fields of the item metadata, and finally writes back the item metadata to server.
+- An item can be locked by add keyword 'lock' to the 'extra' field
+
 
 ## Examples
 ![example1](figs/example1.png)
@@ -46,3 +48,5 @@ This script automatically downloads all your items with Zotero HTTP API, matches
 - [ ] Manually select the correct item from the search results when there are multiple matches (currently I raise an exception in such cases). I think it should be better to develop a GUI plugin of Zotero, in which users can manually select the correct match of an item.
 - [ ] There could be errors in the databases, e.g., https://api.crossref.org/works/10.1145/2465529.2465753 (conference name)
 - [x] Allow to lock an item (e.g., in case it is manually maintained)
+- [ ] Sometimes, the title field is not correctly filled. For example, a subtitle is missing.
+- [ ] Thesis and dissertation

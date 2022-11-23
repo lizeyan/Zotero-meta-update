@@ -17,6 +17,7 @@ def get_updated_zotero_meta_for_item(original_meta: Dict) -> Optional[Dict]:
             extra_info["first_author"] = original_meta["creator"][0]["name"]
         elif 'lastName' in original_meta["creator"][0]:
             extra_info["first_author"] = f"{original_meta['creator'][0]['lastName']}"
+    extra_info['item_type'] = original_meta['itemType']
     work = lookup(
         title=original_meta.get('title', None),
         doi=original_meta.get("DOI", None),

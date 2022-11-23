@@ -107,5 +107,48 @@ def test_lookup_9():
     )
     print(work)
     assert isinstance(work, ConferencePaper)
-    assert work.authors == ['Lee, Suk-Bok', 'Dan Pei', 'Hajiaghayi, MohammadTaghi', 'Pefkianakis, Ioannis', 'Songwu Lu', 'He Yan', 'Zihui Ge', 'Yates, Jennifer', 'Kosseifi, Mario']
+    assert work.authors == ['Lee, Suk-Bok', 'Dan Pei', 'Hajiaghayi, MohammadTaghi', 'Pefkianakis, Ioannis', 'Songwu Lu',
+                            'He Yan', 'Zihui Ge', 'Yates, Jennifer', 'Kosseifi, Mario']
     assert work.series == "INFOCOM 2012"
+
+
+def test_lookup_10():
+    work = lookup(title="Software Engineering Meets Deep Learning: A Literature Review")
+    print(work)
+    assert isinstance(work, Preprint)
+    assert work.archive_ID == 'arXiv:1909.11436'
+    assert work.authors == ['Fabio Ferreira', 'Luciana Lourdes Silva', 'Marco Túlio Valente']
+
+
+def test_lookup_11():
+    work = lookup(title="Topic-sensitive PageRank: a context-sensitive ranking algorithm for Web search")
+    print(work)
+    assert isinstance(work, JournalPaper)
+    assert work.authors == ['Haveliwala, T.H.']
+    assert work.doi == '10.1109/tkde.2003.1208999'
+
+
+def test_lookup_12():
+    work = lookup(title="SEEDB: Efﬁcient Data-Driven Visualization Recommendations to Support Visual Analytics")
+    print(work)
+    assert isinstance(work, JournalPaper)
+    assert work.publication == 'Proc. VLDB Endow.'
+    assert work.doi == '10.14778/2831360.2831371'
+
+
+def test_lookup_13():
+    work = lookup(
+        title="G-RCA: a generic root cause analysis platform for service quality management in large IP networks",
+        extra_info={"item_type": "conferencePaper"}
+    )
+    print(work)
+    assert isinstance(work, ConferencePaper)
+    assert work.doi == "10.1145/1921168.1921175"
+
+    work = lookup(
+        title="G-RCA: a generic root cause analysis platform for service quality management in large IP networks",
+        extra_info={"item_type": "journalArticle"}
+    )
+    print(work)
+    assert isinstance(work, JournalPaper)
+    assert work.doi == "10.1109/tnet.2012.2188837"
