@@ -152,3 +152,13 @@ def test_lookup_13():
     print(work)
     assert isinstance(work, JournalPaper)
     assert work.doi == "10.1109/tnet.2012.2188837"
+
+
+def test_lookup_14():
+    work = lookup(
+        title="CloudRCA: A Root Cause Analysis Framework for Cloud Computing Platforms",
+        extra_info={"item_type": "conferencePaper"}
+    )
+    print(work)
+    assert isinstance(work, ConferencePaper)
+    assert work.proceeding_name == "Proceedings of the 30th ACM International Conference on Information and Knowledge Management"

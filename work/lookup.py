@@ -11,6 +11,18 @@ from work.preprint import Preprint
 __all__ = ['lookup']
 
 
+def replace_escape_character_(data):
+    if isinstance(data, str):
+        data = data.replace("&amp;", "and")
+    elif isinstance(data, dict):
+        for key in data:
+            data[key] = replace_escape_character_(data[key])
+    elif isinstance(data, list):
+        for i, item in enumerate(data):
+            data[i] = replace_escape_character_(item)
+    return data
+
+
 def create_or_update_work_by_crossref_item(crossref_item: dict, orig_work: Optional[Work] = None) -> Optional[Work]:
     if crossref_item["type"] == "proceedings-article":
         work = ConferencePaper().copy_from(orig_work)
@@ -80,12 +92,14 @@ def lookup(
             first_author=extra_info.get("first_author", None),
             item_type=extra_info.get("item_type", None),
         )
+        replace_escape_character_(DBLP_item)
         if DBLP_item is not None:
             logger.info(f"found item {DBLP_item.get('doi', '')=} on DBLP for {doi=}")
             work = create_or_update_work_by_DBLP_item(DBLP_item, orig_work=work)  # 100% matched since DOI matched
         crossref_item = search_on_crossref_by_doi(
             doi,
         )
+        replace_escape_character_(crossref_item)
         if crossref_item is not None:
             logger.info(f"found item {crossref_item['DOI']=} on crossref for {doi=}")
             work = create_or_update_work_by_crossref_item(crossref_item, orig_work=work)  # 100% matched since DOI matched
@@ -95,6 +109,7 @@ def lookup(
             first_author=extra_info.get("first_author", None),
             item_type=extra_info.get("item_type", None),
         )
+        replace_escape_character_(DBLP_item)
         if DBLP_item is not None:
             logger.info(
                 f"found item {DBLP_item['title']=} {DBLP_item.get('doi', '')=} on DBLP for {title=}"
@@ -104,6 +119,7 @@ def lookup(
             title,
             item_type=extra_info.get("item_type", None),
         )
+        replace_escape_character_(crossref_item)
         if crossref_item is not None:
             logger.info(
                 f"found item {crossref_item['title']=} {crossref_item.get('DOI', '')=} on crossref for {title=}"
