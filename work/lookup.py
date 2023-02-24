@@ -48,7 +48,7 @@ def create_or_update_work_by_DBLP_item(DBLP_item: dict, orig_work: Optional[Work
         work = JournalPaper().copy_from(orig_work)
         work.update_with_DBLP_item_data(DBLP_item)
         return work
-    elif DBLP_item["type"] == "Informal Publications":
+    elif DBLP_item["type"] == "Informal Publications" or DBLP_item["type"] == "Informal and Other Publications":
         work = Preprint().copy_from(orig_work)
         work.update_with_DBLP_item_data(DBLP_item)
         return work
