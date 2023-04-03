@@ -43,9 +43,9 @@ def test_update_zotero_meta(original_meta, updated_meta):
 
 
 def test_update_zotero_meta_debug():
-    with open("cases/N38EVV4Q/original.json", 'r') as f:
+    with open(Path(__file__).parent / "cases/N38EVV4Q/original.json", 'r') as f:
         original_meta = json.load(f)
-    with open("cases/N38EVV4Q/updated_meta.json", 'r') as f:
+    with open(Path(__file__).parent / "cases/N38EVV4Q/updated_meta.json", 'r') as f:
         updated_meta = json.load(f)
     print(original_meta["key"])
     new_meta = get_updated_zotero_meta_for_item(original_meta)
