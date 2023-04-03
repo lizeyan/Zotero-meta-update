@@ -1,4 +1,5 @@
-from work import ConferencePaper, lookup, JournalPaper, are_doi_equal, Preprint
+from work import ConferencePaper, JournalPaper, are_doi_equal, Preprint
+from database import lookup
 
 
 def test_lookup_1():

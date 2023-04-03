@@ -4,7 +4,7 @@ from typing import Dict, Optional, List
 from loguru import logger
 from pytz import timezone
 
-from work import lookup
+from database import lookup
 
 
 __all__ = ['get_updated_zotero_meta_for_item', "get_update_time", "set_update_time"]

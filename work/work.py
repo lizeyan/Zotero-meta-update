@@ -1,30 +1,33 @@
+import copy
 from copy import deepcopy
 from dataclasses import dataclass
-from functools import cached_property
-from typing import List, Optional, Dict, Set
+from typing import List, Optional, Dict, Set, ClassVar
 
+import requests
 from loguru import logger
 
-from work.utils import are_doi_equal, are_title_almost_equal
+from work.work_utils import are_doi_equal, are_title_almost_equal
 
 
 @dataclass
 class Work:
+    zotero_item_type: ClassVar[str] = "NotImplemented"
     title: Optional[str] = None
     doi: Optional[str] = None
     authors: Optional[List[str]] = None
     date: Optional[str] = None
     url: Optional[str] = None
 
-    def copy_from(self, work: Optional["Work"]):
+    def copy_from(self, work: Optional["Work"], ignore_type: bool = False):
         """
         Copy the values from an existing `Work` object
         :param work:
+        :param ignore_type: allow to copy from a different type of work
         :return:
         """
         if work is None:
             return self
-        if type(work) != type(self):
+        if type(work) != type(self) and not ignore_type:
             logger.warning(f"Cannot copy from {type(work)} to {type(self)}")
             return self
         for key, value in work.__dict__.items():
@@ -32,20 +35,33 @@ class Work:
                 setattr(self, key, value)
         return self
 
-    @cached_property
-    def zotero_itemtype_fields(self) -> Set[str]:
+    def update_from(self, work: Optional["Work"]):
+        if work is None:
+            return self
+        for key in self.__dict__.keys():
+            if key in work.__dict__:
+                value = getattr(work, key)
+                if value is not None:
+                    setattr(self, key, value)
+
+    @classmethod
+    def zotero_itemtype_fields(cls) -> Set[str]:
         """
         The fields of the item type in Zotero
         :return:
         """
-        raise NotImplementedError()
+        return {_["field"] for _ in requests.get(
+            f"https://api.zotero.org/itemTypeFields?itemType={cls.zotero_item_type}",
+            #     headers=headers,
+            params={
+                "format": "json",
+            },
+        ).json()}
 
-    @property
-    def zotero_generic_fields(self) -> Set[str]:
+    @classmethod
+    def zotero_generic_fields(cls) -> Set[str]:
         """
         The fields in all item types in Zotero, which will not occur in `zotero_itemtype_fields`
-        :param work:
-        :return:
         """
         return {
             'collections',
@@ -59,9 +75,9 @@ class Work:
             'version',
         }
 
-    @cached_property
-    def zotero_fields(self) -> Set[str]:
-        return self.zotero_generic_fields | self.zotero_itemtype_fields
+    @classmethod
+    def zotero_fields(cls) -> Set[str]:
+        return cls.zotero_generic_fields() | cls.zotero_itemtype_fields()
 
     def is_preprint(self) -> bool:
         """
@@ -69,65 +85,6 @@ class Work:
         """
         is_arxiv = self.doi is not None and 'arXiv' in self.doi
         return is_arxiv
-
-    def formal_publish_doi(self) -> Optional[str]:
-        """
-        :return:
-        """
-        if not self.is_preprint():
-            return self.doi
-        else:
-            raise NotImplementedError()  # TODO
-
-    def update_with_crossref_item_data(self, data: Optional[Dict]):
-        """
-        Update the work with the data from Crossref
-        :param data: see an example at https://api.crossref.org/works/10.1023/a:1010933404324
-        :return:
-        """
-        if data is None:
-            return
-        if "title" in data and len(data["title"]) > 0:
-            self.title = data["title"][0]
-            if "subtitle" in data and len(data["subtitle"]) > 0 and data['subtitle'][0] != "":
-                self.title += ": " + data['subtitle'][0]
-        if "author" in data:
-            self.authors = [
-                (
-                    author["family"] + ", " + author["given"]
-                    if 'given' in author and 'family' in author
-                    else (author["family"] if 'family' in author else author['given'])
-                )
-                for author in data["author"]
-            ]
-        if "published-print" in data:
-            self.date = '-'.join(map(str, data["published-print"]["date-parts"][0]))
-        if "URL" in data:
-            self.url = data["URL"]
-        if "DOI" in data:
-            self.doi = data["DOI"]
-
-    def update_with_DBLP_item_data(self, data: Optional[Dict]):
-        """
-        Update the work with the data from DBLP
-        :param data: see an example at "https://dblp.org/search/publ/api?format=json&q=random forest Breiman"
-        :return:
-        """
-        if data is None:
-            return
-        if "title" in data:
-            self.title = data["title"]
-        if "authors" in data:
-            if isinstance(data["authors"]["author"], list):
-                self.authors = [author["text"] for author in data["authors"]["author"]]
-            else:
-                self.authors = [data["authors"]["author"]['text']]
-        if "year" in data:
-            self.date = data["year"]
-        if "url" in data:
-            self.url = data["url"]
-        if "doi" in data:
-            self.doi = data["doi"]
 
     def update_zotero_item_data(self, data: dict) -> Dict:
         """
@@ -173,7 +130,8 @@ class Work:
             # If the length of two lists are equal, we will update each different item.
             for idx, (author_info, new_author_info) in enumerate(zip(data["creators"], new_author_infos)):
                 if author_info != new_author_info:
-                    if 'name' in new_author_info and author_info.get('firstName', "") != "" and author_info.get('lastName', "") != "":
+                    if 'name' in new_author_info and author_info.get('firstName', "") != "" and author_info.get(
+                            'lastName', "") != "":
                         logger.info(
                             "Since the author name is not in the format of 'last name, first name', "
                             f"we do not update the author info: {new_author_info=} {author_info=}"
@@ -204,3 +162,32 @@ class Work:
                 f"update {field_name=} from {data.get(field_name, '')} to {getattr(self, attr_name)} for {data['key']=}"
             )
             data[field_name] = getattr(self, attr_name)
+
+    def _change_zotero_item_type(self, data: Dict):
+        logger.debug(f"Change itemType from {data['itemType']} to {self.zotero_item_type} for key={data['key']}")
+        logger.debug(f"\tOriginal fields: {sorted(data.keys())}")
+        logger.debug(f"\tTarget fields: {sorted(self.zotero_fields())}")
+        for field in set(data.keys()) - self.zotero_fields():
+            logger.debug(f"delete field {field=}")
+            del data[field]
+        for field in self.zotero_fields():
+            if field not in data:
+                logger.debug(f"add field {field=}")
+                data[field] = ""
+        data["itemType"] = self.zotero_item_type
+        return data
+
+
+def merge_works(works: List[Optional["Work"]]) -> Optional["Work"]:
+    """
+    Merge works by substituting the item values in order. Use the last one's type.
+    :param works:
+    :return:
+    """
+    works = list(filter(lambda _: _ is not None, works))
+    if len(works) == 0:
+        return None
+    ret_work = copy.deepcopy(works[-1])
+    for work in works:
+        ret_work.update_from(work)
+    return ret_work

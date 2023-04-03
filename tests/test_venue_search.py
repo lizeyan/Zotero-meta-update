@@ -1,4 +1,4 @@
-from work import search_journal_by_openAlex
+from database.search_item import search_journal_by_openAlex
 
 
 def test_journal_search_by_openAlex():

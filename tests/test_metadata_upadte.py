@@ -42,22 +42,22 @@ def test_update_zotero_meta(original_meta, updated_meta):
         assert new_meta is None
 
 
-# def test_update_zotero_meta_debug():
-#     with open("cases/makvpur2/original.json", 'r') as f:
-#         original_meta = json.load(f)
-#     with open("cases/makvpur2/updated_meta.json", 'r') as f:
-#         updated_meta = json.load(f)
-#     print(original_meta["key"])
-#     new_meta = get_updated_zotero_meta_for_item(original_meta)
-#     if "dateModified" in new_meta:
-#         del new_meta["dateModified"]
-#     if "dateModified" in updated_meta:
-#         del updated_meta["dateModified"]
-#     if "extra" in new_meta:
-#         del new_meta["extra"]
-#     if "extra" in updated_meta:
-#         del updated_meta["extra"]
-#     if updated_meta is not None:
-#         assert new_meta is not None and new_meta == updated_meta
-#     else:
-#         assert new_meta is None
+def test_update_zotero_meta_debug():
+    with open("cases/N38EVV4Q/original.json", 'r') as f:
+        original_meta = json.load(f)
+    with open("cases/N38EVV4Q/updated_meta.json", 'r') as f:
+        updated_meta = json.load(f)
+    print(original_meta["key"])
+    new_meta = get_updated_zotero_meta_for_item(original_meta)
+    if "dateModified" in new_meta:
+        del new_meta["dateModified"]
+    if "dateModified" in updated_meta:
+        del updated_meta["dateModified"]
+    if "extra" in new_meta:
+        del new_meta["extra"]
+    if "extra" in updated_meta:
+        del updated_meta["extra"]
+    if updated_meta is not None:
+        assert new_meta is not None and new_meta == updated_meta
+    else:
+        assert new_meta is None

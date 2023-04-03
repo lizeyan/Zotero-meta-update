@@ -2,25 +2,16 @@ from typing import Optional, Dict
 
 from loguru import logger
 
+from database import parse_DBLP_item, parse_crossref_item
+from database.search_item import search_on_DBLP_by_title, search_on_crossref_by_title, search_on_crossref_by_doi
 from work.conference_paper import ConferencePaper
 from work.journal_paper import JournalPaper
-from work.search_item import search_on_DBLP_by_title, search_on_crossref_by_title, search_on_crossref_by_doi
-from work.work import Work
 from work.preprint import Preprint
+from work.work import Work
 
 __all__ = ['lookup']
 
-
-def replace_escape_character_(data):
-    if isinstance(data, str):
-        data = data.replace("&amp;", "and")
-    elif isinstance(data, dict):
-        for key in data:
-            data[key] = replace_escape_character_(data[key])
-    elif isinstance(data, list):
-        for i, item in enumerate(data):
-            data[i] = replace_escape_character_(item)
-    return data
+from work import merge_works
 
 
 def create_or_update_work_by_crossref_item(crossref_item: dict, orig_work: Optional[Work] = None) -> Optional[Work]:
@@ -85,44 +76,29 @@ def lookup(
     if title is not None:
         # Sometimes the extracted title would contain non-ascii characters, which would cause the search to fail
         title = title.replace("ﬁ", "fi")
-    work = None
     if doi is not None:
-        DBLP_item = search_on_DBLP_by_title(
-            title, doi=doi,
-            first_author=extra_info.get("first_author", None),
-            item_type=extra_info.get("item_type", None),
-        )
-        replace_escape_character_(DBLP_item)
-        if DBLP_item is not None:
-            logger.info(f"found item {DBLP_item.get('doi', '')=} on DBLP for {doi=}")
-            work = create_or_update_work_by_DBLP_item(DBLP_item, orig_work=work)  # 100% matched since DOI matched
-        crossref_item = search_on_crossref_by_doi(
-            doi,
-        )
-        replace_escape_character_(crossref_item)
-        if crossref_item is not None:
-            logger.info(f"found item {crossref_item['DOI']=} on crossref for {doi=}")
-            work = create_or_update_work_by_crossref_item(crossref_item, orig_work=work)  # 100% matched since DOI matched
+        work = merge_works([
+            parse_DBLP_item(
+                search_on_DBLP_by_title(
+                    title, doi=doi,
+                    first_author=extra_info.get("first_author", None),
+                    item_type=extra_info.get("item_type", None),
+                )
+            ),
+            parse_crossref_item(search_on_crossref_by_doi(doi, )),
+        ])
     else:
-        DBLP_item = search_on_DBLP_by_title(
-            title,
-            first_author=extra_info.get("first_author", None),
-            item_type=extra_info.get("item_type", None),
-        )
-        replace_escape_character_(DBLP_item)
-        if DBLP_item is not None:
-            logger.info(
-                f"found item {DBLP_item['title']=} {DBLP_item.get('doi', '')=} on DBLP for {title=}"
-            )
-            work = create_or_update_work_by_DBLP_item(DBLP_item, orig_work=work)
-        crossref_item = search_on_crossref_by_title(
-            title,
-            item_type=extra_info.get("item_type", None),
-        )
-        replace_escape_character_(crossref_item)
-        if crossref_item is not None:
-            logger.info(
-                f"found item {crossref_item['title']=} {crossref_item.get('DOI', '')=} on crossref for {title=}"
-            )
-            work = create_or_update_work_by_crossref_item(crossref_item, orig_work=work)
+        work = merge_works([
+            parse_DBLP_item(
+                search_on_DBLP_by_title(
+                    title,
+                    first_author=extra_info.get("first_author", None),
+                    item_type=extra_info.get("item_type", None),
+                )
+            ),
+            parse_crossref_item(search_on_crossref_by_title(
+                title,
+                item_type=extra_info.get("item_type", None),
+            )),
+        ])
     return work

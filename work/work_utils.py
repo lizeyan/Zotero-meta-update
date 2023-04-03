@@ -22,3 +22,5 @@ def are_doi_equal(doi_a: Optional[str], doi_b: Optional[str]) -> bool:
         return False
     else:
         return urlparse(doi_a).path.lstrip("/").lower() == urlparse(doi_b).path.lstrip("/").lower()
+
+

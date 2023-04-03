@@ -7,8 +7,8 @@ from typing import Optional
 import requests
 from loguru import logger
 from requests.adapters import HTTPAdapter, Retry
-
-from work.utils import are_title_almost_equal, are_doi_equal
+from functools import wraps
+from work.work_utils import are_title_almost_equal, are_doi_equal
 
 _session = requests.Session()
 _adapter = HTTPAdapter(
@@ -20,7 +20,27 @@ _session.mount("http://", _adapter)
 _session.mount("https://", _adapter)
 
 
+def replace_escape_character(func):
+    def replace_escape_character_(data):
+        if isinstance(data, str):
+            data = data.replace("&amp;", "and")
+        elif isinstance(data, dict):
+            for key in data:
+                data[key] = replace_escape_character_(data[key])
+        elif isinstance(data, list):
+            for i, item in enumerate(data):
+                data[i] = replace_escape_character_(item)
+        return data
+
+    @wraps(func)
+    def new_func(*args, **kwargs):
+        return replace_escape_character_(func(*args, **kwargs))
+
+    return new_func
+
+
 @lru_cache(maxsize=None)
+@replace_escape_character
 def search_on_crossref_by_doi(doi: str) -> Optional[dict]:
     logger.debug(f"search_on_crossref_by_doi {doi=}")
     try:
@@ -32,6 +52,7 @@ def search_on_crossref_by_doi(doi: str) -> Optional[dict]:
 
 
 @lru_cache(maxsize=None)
+@replace_escape_character
 def search_on_crossref_by_title(title: str, item_type: Optional[str] = None) -> Optional[dict]:
     """
     This function is called only when DOI is missing, so DOI is not a parameter here.
@@ -79,6 +100,7 @@ def search_on_crossref_by_title(title: str, item_type: Optional[str] = None) -> 
 
 
 @lru_cache(maxsize=None)
+@replace_escape_character
 def search_on_DBLP_by_title(
         title: str, *, doi: Optional[str] = None, first_author: Optional[str] = None,
         item_type: Optional[str] = None,
@@ -127,6 +149,7 @@ def search_on_DBLP_by_title(
                     if (doi is None and title_matched) or doi_matched:
                         possible_items.append(info)
         if len(possible_items) == 0:
+            logger.debug(f"Nothing fond for {title=} {doi=} in DBLP")
             return None
         elif len(possible_items) == 1:
             return possible_items[0]
@@ -176,6 +199,7 @@ def search_on_DBLP_by_title(
 
 
 @lru_cache(maxsize=None)
+@replace_escape_character
 def get_venue_info_on_DBLP(key: str, year: str):
     logger.debug(f"get_venue_info_on_DBLP {key=} {year=}")
     try:
@@ -193,6 +217,7 @@ def get_venue_info_on_DBLP(key: str, year: str):
 
 
 @lru_cache(maxsize=None)
+@replace_escape_character
 def search_journal_by_openAlex(title: str):
     logger.debug(f"search_journal_by_openAlex {title=}")
     try:

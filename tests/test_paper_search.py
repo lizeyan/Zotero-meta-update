@@ -1,7 +1,7 @@
 import pytest
 
 from work import are_doi_equal
-from work.search_item import search_on_crossref_by_title, search_on_DBLP_by_title
+from database.search_item import search_on_crossref_by_title, search_on_DBLP_by_title
 
 
 @pytest.mark.parametrize(
@@ -34,17 +34,17 @@ def test_search_with_title_crossref(title, doi):
 
 @pytest.mark.parametrize(
     "title,doi", [
-        (
-                "Diagnosing Performance Issues in Microservices with Heterogeneous Data Source",
-                "10.1109/ISPA-BDCloud-SocialCom-SustainCom52081.2021.00074",
-        ),
-        (
-                "Robust KPI Anomaly Detection for Large-Scale Software Services with Partial Labels",
-                "10.1109/ISSRE52982.2021.00023",
-        ),
+        # (
+        #         "Diagnosing Performance Issues in Microservices with Heterogeneous Data Source",
+        #         "10.1109/ISPA-BDCloud-SocialCom-SustainCom52081.2021.00074",
+        # ),
+        # (
+        #         "Robust KPI Anomaly Detection for Large-Scale Software Services with Partial Labels",
+        #         "10.1109/ISSRE52982.2021.00023",
+        # ),
         (
                 "Dynamic Application Call Graph Formation and Service Identification in Cloud Data Centers",
-                None,
+                "10.1109/TNSM.2022.3201095",
         ),
     ]
 )

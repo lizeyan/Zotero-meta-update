@@ -376,3 +376,4 @@ ZOTERO_API_KEY
 
 output/
 /.coveralls.yml
+/.idea/jupyter-settings.xml
