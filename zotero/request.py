@@ -74,6 +74,9 @@ def download_items(output_dir: Path = Path("./output"), *, limit: int = 100, n_w
             item_output_dir.mkdir(parents=True, exist_ok=True)
             with open(item_output_dir / "original.json", 'w') as f:
                 json.dump(item, f, indent=2)
+            # save metadata for at least a year
+            with open(item_output_dir / f"original-{datetime.now().strftime('%m-%d')}.json", 'w') as f:
+                json.dump(item, f, indent=2)
 
     first_response: Response = query(start=0)
     total_counts: int = int(first_response.headers.get("Total-Results"))
@@ -81,8 +84,10 @@ def download_items(output_dir: Path = Path("./output"), *, limit: int = 100, n_w
 
     process_items(first_response.json())
 
-    with ThreadPoolExecutor(max_workers=n_workers) as executor:
-        executor.map(lambda _start: process_items(query(_start).json()), range(count, total_counts, limit))
+    # with ThreadPoolExecutor(max_workers=n_workers) as executor:
+    #     executor.map(lambda _start: process_items(query(_start).json()), range(count, total_counts, limit))
+    for _start in range(count, total_counts, limit):
+        process_items(query(_start).json())
 
     assert count == total_counts, f"{count=} {total_counts=}"
     return count
