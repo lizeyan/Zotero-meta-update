@@ -14,6 +14,10 @@ class JournalPaper(Work):
     pages: Optional[str] = None
 
     def update_zotero_item_data(self, data: dict) -> Dict:
+        key = self.publication.strip()
+        if key in PREFERRED_JOURNAL_ABBR:
+            self.journal_abbr = PREFERRED_JOURNAL_ABBR[key]
+
         data = super().update_zotero_item_data(data)
 
         self._change_zotero_item_type(data)
@@ -24,3 +28,17 @@ class JournalPaper(Work):
         self._update_zotero_item_key(data, "issue", "issue")
         self._update_zotero_item_key(data, "pages", "pages")
         return data
+
+
+PREFERRED_JOURNAL_ABBR = {
+    "Proceedings of the VLDB Endowment": "PVLDB",
+    "Journal of Systems and Software": "JSS",
+    "IEEE Transactions on Software Engineering": "TSE",
+    "IEEE Transactions on Parallel and Distributed Systems": "TPDS",
+    "ACM Transactions on Software Engineering and Methodology": "TOSEM",
+    "IEEE Transactions on Neural Networks and Learning Systems": "TNNLS",
+    "IEEE Transactions on Network and Service Management": "TNSM",
+    "IEEE Transactions on Knowledge and Data Engineering": "TKDE",
+    "IEEE Transactions on Services Computing": "TSC",
+    "IEEE/ACM Transactions on Networking": "TON",
+}

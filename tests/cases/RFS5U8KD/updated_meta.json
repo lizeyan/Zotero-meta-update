@@ -2,7 +2,7 @@
   "key": "RFS5U8KD",
   "version": 6449,
   "itemType": "journalArticle",
-  "title": "Robust Anomaly Clue Localization of Multi-dimensional Derived Measure for Online Video Services",
+  "title": "Robust Anomaly Clue Localization of Multi-Dimensional Derived Measure for Online Video Services",
   "creators": [
     {
       "creatorType": "author",
@@ -16,7 +16,7 @@
     },
     {
       "creatorType": "author",
-      "firstName": "Pengxaing",
+      "firstName": "Pengxiang",
       "lastName": "Jin"
     },
     {
@@ -67,14 +67,14 @@
   ],
   "abstractNote": "",
   "publicationTitle": "IEEE Transactions on Services Computing",
-  "volume": "",
-  "issue": "",
-  "pages": "1-1",
-  "date": "2022",
+  "volume": "16",
+  "issue": "2",
+  "pages": "1387-1401",
+  "date": "2023-3-1",
   "series": "",
   "seriesTitle": "",
   "seriesText": "",
-  "journalAbbreviation": "IEEE Trans. Serv. Comput.",
+  "journalAbbreviation": "TSC",
   "language": "en",
   "DOI": "10.1109/tsc.2022.3155500",
   "ISSN": "1939-1374, 2372-0204",
